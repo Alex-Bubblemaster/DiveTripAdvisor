@@ -8,12 +8,27 @@
 
 import UIKit
 
-class PopUpViewController: UIViewController {
+class PopUpViewController: UIViewController, HttpRequesterDelegate {
     var user:User?
+    var url: String {
+        get{
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            return "\(appDelegate.baseUrl)/updateUserInfo"
+        }
+    }
+    
+    var http: HttpRequester? {
+        get{
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            return appDelegate.http
+        }
+    }
+    
     override func viewDidLoad() {
         cancel.layer.cornerRadius = 10
         save.layer.cornerRadius = 10
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
         self.user = appDelegate.user
         
         imageUrl.text = self.user?.imageUrl
@@ -31,11 +46,37 @@ class PopUpViewController: UIViewController {
     
     @IBOutlet weak var cancel: UIButton!
     @IBOutlet weak var save: UIButton!
+    @IBAction func update(_ sender: UIButton) {
+        self.http?.delegate = self
+        let username = self.user?.username
+        self.http?.postJson(toUrl: self.url, withBody:
+            ["username": username!,
+             "firstName": firstName.text!,
+             "lastName" : lastName.text!,
+             "description": userDescription.text!,
+             "imageUrl": imageUrl.text!], andHeaders: ["authorization": UserDefaults.standard.value(forKey: "token") as! String])
+    }
+    
+    func didReceiveData(data: Any) {
+        if let response = data as? Dictionary<String,Any> {
+            let loggedUser =  User(dictionary: response["user"] as! [String: Any])
+
+            DispatchQueue.main.async {
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                appDelegate.user = loggedUser
+                   self.removeAnimate()
+                }
+        }
+    }
+    
+    func didReceiveError(error: HttpError) {
+        print(error)
+    }
     @IBAction func closePopUp() {
         self.removeAnimate()
     }
-    func showAnimate()
-    {
+    
+    func showAnimate(){
         self.view.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
         self.view.alpha = 0.0;
         UIView.animate(withDuration: 0.25, animations: {
@@ -44,8 +85,7 @@ class PopUpViewController: UIViewController {
         });
     }
     
-    func removeAnimate()
-    {
+    func removeAnimate(){
         UIView.animate(withDuration: 0.25, animations: {
             self.view.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
             self.view.alpha = 0.0;
@@ -61,16 +101,4 @@ class PopUpViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

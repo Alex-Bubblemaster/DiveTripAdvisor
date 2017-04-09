@@ -55,6 +55,15 @@ class ViewController: UIViewController, HttpRequesterDelegate {
                 
                 let appDelegate = UIApplication.shared.delegate as! AppDelegate
                 appDelegate.user = loggedUser
+                
+                // test
+                let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+                let user = AppUser(context: context) // Link Task & Context
+                user.lastName = loggedUser.lastName!
+                
+                // Save the data to coredata
+                (UIApplication.shared.delegate as! AppDelegate).saveContext()
+                
                 appDelegate.navigationController?.pushViewController(tabsVC, animated: true)
 
             }

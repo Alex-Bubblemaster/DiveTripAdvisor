@@ -26,6 +26,7 @@
 		999045DA1E9A55AD00AB52EF /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999045D91E9A55AD00AB52EF /* ProfileViewController.swift */; };
 		999045DC1E9A661900AB52EF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 999045DB1E9A661900AB52EF /* Main.storyboard */; };
 		999045DE1E9AA63F00AB52EF /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999045DD1E9AA63F00AB52EF /* PopUpViewController.swift */; };
+		999045E01E9AC6C000AB52EF /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999045DF1E9AC6C000AB52EF /* TabViewController.swift */; };
 		99A702141E9931170028E942 /* LogsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A702121E9931170028E942 /* LogsTableViewController.swift */; };
 		99A702171E994F730028E942 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A702161E994F730028E942 /* Location.swift */; };
 /* End PBXBuildFile section */
@@ -73,6 +74,7 @@
 		999045D91E9A55AD00AB52EF /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = ViewControllers/ProfileViewController.swift; sourceTree = "<group>"; };
 		999045DB1E9A661900AB52EF /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = DiveTripAdvisor/Main.storyboard; sourceTree = "<group>"; };
 		999045DD1E9AA63F00AB52EF /* PopUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PopUpViewController.swift; path = ViewControllers/PopUpViewController.swift; sourceTree = "<group>"; };
+		999045DF1E9AC6C000AB52EF /* TabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TabViewController.swift; path = ViewControllers/TabViewController.swift; sourceTree = "<group>"; };
 		99A702121E9931170028E942 /* LogsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogsTableViewController.swift; sourceTree = "<group>"; };
 		99A702161E994F730028E942 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -204,6 +206,7 @@
 				99A702121E9931170028E942 /* LogsTableViewController.swift */,
 				999045CD1E99B0DA00AB52EF /* LocationsTableViewController.swift */,
 				999045D91E9A55AD00AB52EF /* ProfileViewController.swift */,
+				999045DF1E9AC6C000AB52EF /* TabViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -350,6 +353,7 @@
 				9947F3A41E8D053E005D7000 /* ViewController.swift in Sources */,
 				9947F3D81E8D4088005D7000 /* Log.swift in Sources */,
 				9947F3AA1E8D053E005D7000 /* DiveTripAdvisor.xcdatamodeld in Sources */,
+				999045E01E9AC6C000AB52EF /* TabViewController.swift in Sources */,
 				9947F3DF1E8D7B89005D7000 /* HttpRequesterDelegate.swift in Sources */,
 				99A702171E994F730028E942 /* Location.swift in Sources */,
 				999045DA1E9A55AD00AB52EF /* ProfileViewController.swift in Sources */,

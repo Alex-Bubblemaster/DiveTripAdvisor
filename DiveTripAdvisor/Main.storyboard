@@ -90,10 +90,10 @@
             </objects>
             <point key="canvasLocation" x="-4000.8000000000002" y="-699.40029985007504"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Tab View Controller-->
         <scene sceneID="Jcy-ET-8hX">
             <objects>
-                <tabBarController storyboardIdentifier="tabs" id="ybv-rK-RPB" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tabs" id="ybv-rK-RPB" customClass="TabViewController" customModule="DiveTripAdvisor" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" translucent="NO" id="5Ab-ZW-QLR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -107,7 +107,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DEz-xW-ZdK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3368.8000000000002" y="-699.40029985007504"/>
+            <point key="canvasLocation" x="-3311" y="-699"/>
         </scene>
         <!--Profile-->
         <scene sceneID="1xq-wj-DQ2">
@@ -270,6 +270,9 @@
                                 <state key="normal" title="Save">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="update:" destination="8h5-cK-9e3" eventType="touchUpInside" id="KKQ-g6-fqs"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EM3-Aa-5qx">
                                 <rect key="frame" x="203" y="407" width="101" height="57"/>
