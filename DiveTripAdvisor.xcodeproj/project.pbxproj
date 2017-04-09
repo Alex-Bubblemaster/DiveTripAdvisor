@@ -72,7 +72,7 @@
 		999045D51E9A385800AB52EF /* Scuba Mask-30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Scuba Mask-30.png"; path = "Assets.xcassets/Scuba Mask-30.png"; sourceTree = "<group>"; };
 		999045D91E9A55AD00AB52EF /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = ViewControllers/ProfileViewController.swift; sourceTree = "<group>"; };
 		999045DB1E9A661900AB52EF /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = DiveTripAdvisor/Main.storyboard; sourceTree = "<group>"; };
-		999045DD1E9AA63F00AB52EF /* PopUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PopUpViewController.swift; path = DiveTripAdvisor/ViewControllers/PopUpViewController.swift; sourceTree = "<group>"; };
+		999045DD1E9AA63F00AB52EF /* PopUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PopUpViewController.swift; path = ViewControllers/PopUpViewController.swift; sourceTree = "<group>"; };
 		99A702121E9931170028E942 /* LogsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogsTableViewController.swift; sourceTree = "<group>"; };
 		99A702161E994F730028E942 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -105,7 +105,6 @@
 		9947F3951E8D053D005D7000 = {
 			isa = PBXGroup;
 			children = (
-				999045DD1E9AA63F00AB52EF /* PopUpViewController.swift */,
 				999045DB1E9A661900AB52EF /* Main.storyboard */,
 				9947F3A01E8D053D005D7000 /* DiveTripAdvisor */,
 				9947F3B81E8D053E005D7000 /* DiveTripAdvisorTests */,
@@ -200,6 +199,7 @@
 		99A7020D1E992AC60028E942 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				999045DD1E9AA63F00AB52EF /* PopUpViewController.swift */,
 				9947F3A31E8D053E005D7000 /* ViewController.swift */,
 				99A702121E9931170028E942 /* LogsTableViewController.swift */,
 				999045CD1E99B0DA00AB52EF /* LocationsTableViewController.swift */,

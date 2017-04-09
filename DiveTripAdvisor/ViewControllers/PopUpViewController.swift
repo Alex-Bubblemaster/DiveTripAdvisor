@@ -9,15 +9,19 @@
 import UIKit
 
 class PopUpViewController: UIViewController {
-
+    var user:User?
     override func viewDidLoad() {
         cancel.layer.cornerRadius = 10
         save.layer.cornerRadius = 10
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        self.user = appDelegate.user
         
+        imageUrl.text = self.user?.imageUrl
+        firstName.text = self.user?.firstName
+        lastName.text = self.user?.lastName
+        userDescription.text = self.user?.userDescription
         super.viewDidLoad()
-
         self.view.backgroundColor = UIColor.black.withAlphaComponent(0.8)
-        
         self.showAnimate()
     }
     @IBOutlet weak var firstName: UITextField!
