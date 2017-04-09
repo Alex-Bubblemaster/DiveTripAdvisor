@@ -20,17 +20,30 @@ class ProfileViewController : UIViewController {
         firstName.text = self.user.firstName
         lastName.text = self.user.lastName
         userDescription.text = self.user.userDescription
+        addBtn.layer.cornerRadius = 10
+        editBtn.layer.cornerRadius = 10
         
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
     }
+    @IBOutlet weak var editBtn: UIButton!
+    @IBOutlet weak var addBtn: UIButton!
     @IBOutlet weak var username: UILabel!
     @IBOutlet weak var firstName: UILabel!
     @IBOutlet weak var lastName: UILabel!
     @IBOutlet weak var userDescription: UILabel!
     @IBOutlet weak var image: UIImageView!
     
+    @IBAction func edit() {
+        let popOverVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "sbPopUpID") as! PopUpViewController
+        self.addChildViewController(popOverVC)
+        popOverVC.view.frame = self.view.frame
+        self.view.addSubview(popOverVC.view)
+        popOverVC.didMove(toParentViewController: self)
+    }
+    @IBAction func addDIve() {
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
