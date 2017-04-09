@@ -20,6 +20,10 @@
 		9947F3DD1E8D7B4B005D7000 /* HttpRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9947F3DC1E8D7B4B005D7000 /* HttpRequester.swift */; };
 		9947F3DF1E8D7B89005D7000 /* HttpRequesterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9947F3DE1E8D7B89005D7000 /* HttpRequesterDelegate.swift */; };
 		999045CE1E99B0DA00AB52EF /* LocationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999045CD1E99B0DA00AB52EF /* LocationsTableViewController.swift */; };
+		999045D01E9A346900AB52EF /* Book Shelf-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 999045CF1E9A346900AB52EF /* Book Shelf-50.png */; };
+		999045D21E9A354F00AB52EF /* Book Shelf-30.png in Resources */ = {isa = PBXBuildFile; fileRef = 999045D11E9A354F00AB52EF /* Book Shelf-30.png */; };
+		999045D41E9A35FD00AB52EF /* Marker-30.png in Resources */ = {isa = PBXBuildFile; fileRef = 999045D31E9A35FD00AB52EF /* Marker-30.png */; };
+		999045D61E9A385800AB52EF /* Scuba Mask-30.png in Resources */ = {isa = PBXBuildFile; fileRef = 999045D51E9A385800AB52EF /* Scuba Mask-30.png */; };
 		99A702141E9931170028E942 /* LogsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A702121E9931170028E942 /* LogsTableViewController.swift */; };
 		99A702171E994F730028E942 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A702161E994F730028E942 /* Location.swift */; };
 /* End PBXBuildFile section */
@@ -61,6 +65,10 @@
 		9947F3DC1E8D7B4B005D7000 /* HttpRequester.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpRequester.swift; sourceTree = "<group>"; };
 		9947F3DE1E8D7B89005D7000 /* HttpRequesterDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpRequesterDelegate.swift; sourceTree = "<group>"; };
 		999045CD1E99B0DA00AB52EF /* LocationsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationsTableViewController.swift; path = ViewControllers/LocationsTableViewController.swift; sourceTree = "<group>"; };
+		999045CF1E9A346900AB52EF /* Book Shelf-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Book Shelf-50.png"; path = "Assets.xcassets/Book Shelf-50.png"; sourceTree = "<group>"; };
+		999045D11E9A354F00AB52EF /* Book Shelf-30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Book Shelf-30.png"; path = "Assets.xcassets/Book Shelf-30.png"; sourceTree = "<group>"; };
+		999045D31E9A35FD00AB52EF /* Marker-30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Marker-30.png"; path = "Assets.xcassets/Marker-30.png"; sourceTree = "<group>"; };
+		999045D51E9A385800AB52EF /* Scuba Mask-30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Scuba Mask-30.png"; path = "Assets.xcassets/Scuba Mask-30.png"; sourceTree = "<group>"; };
 		99A702121E9931170028E942 /* LogsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogsTableViewController.swift; sourceTree = "<group>"; };
 		99A702161E994F730028E942 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -156,6 +164,10 @@
 		9947F3D31E8D0CB0005D7000 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				999045D51E9A385800AB52EF /* Scuba Mask-30.png */,
+				999045D31E9A35FD00AB52EF /* Marker-30.png */,
+				999045D11E9A354F00AB52EF /* Book Shelf-30.png */,
+				999045CF1E9A346900AB52EF /* Book Shelf-50.png */,
 				9947F3AB1E8D053E005D7000 /* Assets.xcassets */,
 			);
 			name = Assets;
@@ -299,7 +311,11 @@
 			files = (
 				9947F3AF1E8D053E005D7000 /* LaunchScreen.storyboard in Resources */,
 				9947F3AC1E8D053E005D7000 /* Assets.xcassets in Resources */,
+				999045D41E9A35FD00AB52EF /* Marker-30.png in Resources */,
 				9947F3A71E8D053E005D7000 /* Main.storyboard in Resources */,
+				999045D61E9A385800AB52EF /* Scuba Mask-30.png in Resources */,
+				999045D21E9A354F00AB52EF /* Book Shelf-30.png in Resources */,
+				999045D01E9A346900AB52EF /* Book Shelf-50.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

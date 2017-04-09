@@ -59,7 +59,7 @@ class LogsTableViewController: UITableViewController, HttpRequesterDelegate {
                 })
                 
                 self.logs = diveLogs.map(){Log(dictionary:$0 as! [String : Any])}
-
+                print(diveLogs)
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }

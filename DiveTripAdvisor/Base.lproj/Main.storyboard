@@ -93,7 +93,7 @@
         <scene sceneID="Jcy-ET-8hX">
             <objects>
                 <tabBarController id="ybv-rK-RPB" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="5Ab-ZW-QLR">
+                    <tabBar key="tabBar" contentMode="scaleToFill" translucent="NO" id="5Ab-ZW-QLR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -101,18 +101,39 @@
                     <connections>
                         <segue destination="A19-5W-sjF" kind="relationship" relationship="viewControllers" id="QNn-Zh-tcV"/>
                         <segue destination="khB-gb-PGd" kind="relationship" relationship="viewControllers" id="qXo-MA-4sl"/>
+                        <segue destination="EIp-Pg-ZVD" kind="relationship" relationship="viewControllers" id="hnm-yG-IaR"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DEz-xW-ZdK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-3452" y="-340"/>
         </scene>
-        <!--Item-->
+        <!--Profile-->
+        <scene sceneID="1xq-wj-DQ2">
+            <objects>
+                <viewController id="EIp-Pg-ZVD" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="xPR-pA-pkP"/>
+                        <viewControllerLayoutGuide type="bottom" id="52T-bB-iuB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="gI9-WD-UNg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Profile" image="Scuba Mask-30.png" id="eFp-ri-0Lo"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fwh-hv-B9X" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2343" y="-1106"/>
+        </scene>
+        <!--Logs-->
         <scene sceneID="0JE-1A-vl8">
             <objects>
                 <tableViewController storyboardIdentifier="logs" id="A19-5W-sjF" customClass="LogsTableViewController" customModule="DiveTripAdvisor" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" sectionHeaderHeight="35" sectionFooterHeight="28" id="AKw-gf-ek8">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -130,18 +151,18 @@
                             <outlet property="delegate" destination="A19-5W-sjF" id="KvY-3f-BGm"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Item" id="Jvh-BX-0Av"/>
+                    <tabBarItem key="tabBarItem" title="Logs" image="Book Shelf-30.png" id="Jvh-BX-0Av"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ucT-xL-QI2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2369" y="-421"/>
         </scene>
-        <!--Item-->
+        <!--Locations-->
         <scene sceneID="cW8-Yv-Rk1">
             <objects>
                 <tableViewController storyboardIdentifier="locations" id="khB-gb-PGd" customClass="LocationsTableViewController" customModule="DiveTripAdvisor" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="cgf-BG-htK">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -159,7 +180,7 @@
                             <outlet property="delegate" destination="khB-gb-PGd" id="Mzn-fM-EPu"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Item" id="JzJ-u9-oWV"/>
+                    <tabBarItem key="tabBarItem" title="Locations" image="Marker-30.png" id="JzJ-u9-oWV"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="86Z-OY-a58" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -168,5 +189,8 @@
     </scenes>
     <resources>
         <image name="5245611577_781da01a65" width="375" height="500"/>
+        <image name="Book Shelf-30.png" width="30" height="30"/>
+        <image name="Marker-30.png" width="30" height="30"/>
+        <image name="Scuba Mask-30.png" width="30" height="30"/>
     </resources>
 </document>
