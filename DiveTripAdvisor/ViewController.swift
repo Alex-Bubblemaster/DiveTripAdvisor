@@ -37,6 +37,7 @@ class ViewController: UIViewController, HttpRequesterDelegate {
     override func viewDidLoad() {
         loginButton.layer.cornerRadius = 10
         registerButton.layer.cornerRadius = 10
+
         super.viewDidLoad()
         
         // Do any additional setup after loading the view, typically from a nib.
@@ -45,7 +46,7 @@ class ViewController: UIViewController, HttpRequesterDelegate {
     func didReceiveData(data: Any) {
       //  print(data)
         if let response = data as? Dictionary<String,Any> {
-            var loggedUser =  User(dictionary: response["user"] as! [String: Any])
+            let loggedUser =  User(dictionary: response["user"] as! [String: Any])
             let token = response["token"] as! String
             defaults.setValue(token, forKey: "token")
             
@@ -54,6 +55,7 @@ class ViewController: UIViewController, HttpRequesterDelegate {
                 let tabsVC = storyboard.instantiateViewController(withIdentifier: "tabs")
                 
                 let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                appDelegate.user = loggedUser
                 appDelegate.navigationController?.pushViewController(tabsVC, animated: true)
 
             }
