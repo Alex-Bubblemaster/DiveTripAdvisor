@@ -44,7 +44,6 @@ class ViewController: UIViewController, HttpRequesterDelegate {
     }
     
     func didReceiveData(data: Any) {
-      //  print(data)
         if let response = data as? Dictionary<String,Any> {
             let loggedUser =  User(dictionary: response["user"] as! [String: Any])
             let token = response["token"] as! String
