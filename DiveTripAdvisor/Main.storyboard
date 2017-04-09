@@ -99,14 +99,14 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="A19-5W-sjF" kind="relationship" relationship="viewControllers" id="QNn-Zh-tcV"/>
-                        <segue destination="khB-gb-PGd" kind="relationship" relationship="viewControllers" id="qXo-MA-4sl"/>
                         <segue destination="EIp-Pg-ZVD" kind="relationship" relationship="viewControllers" id="hnm-yG-IaR"/>
+                        <segue destination="khB-gb-PGd" kind="relationship" relationship="viewControllers" id="qXo-MA-4sl"/>
+                        <segue destination="A19-5W-sjF" kind="relationship" relationship="viewControllers" id="QNn-Zh-tcV"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DEz-xW-ZdK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3957" y="-166"/>
+            <point key="canvasLocation" x="-4308" y="-699"/>
         </scene>
         <!--Profile-->
         <scene sceneID="1xq-wj-DQ2">

@@ -48,9 +48,10 @@ class ViewController: UIViewController, HttpRequesterDelegate {
             var loggedUser =  User(dictionary: response["user"] as! [String: Any])
             let token = response["token"] as! String
             defaults.setValue(token, forKey: "token")
+            
             DispatchQueue.main.async {
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let controller = storyboard.instantiateViewController(withIdentifier: "profile")
+                let controller = storyboard.instantiateViewController(withIdentifier: "tabs")
                 
                 self.present(controller, animated: true, completion: nil)
 
