@@ -48,6 +48,7 @@ class LocationsTableViewController: UITableViewController, HttpRequesterDelegate
         if let array = data as? [String: Any] {
             if let dataArray = array["data"] as? [Dictionary<String, Any>] {
                 self.locations = dataArray.map(){Location(dictionary: $0)}
+                                        .filter{$0.name != ""}
                                 
                 DispatchQueue.main.async {
                     self.tableView.reloadData()

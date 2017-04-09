@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		9947F3A21E8D053E005D7000 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9947F3A11E8D053D005D7000 /* AppDelegate.swift */; };
 		9947F3A41E8D053E005D7000 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9947F3A31E8D053E005D7000 /* ViewController.swift */; };
-		9947F3A71E8D053E005D7000 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9947F3A51E8D053E005D7000 /* Main.storyboard */; };
 		9947F3AA1E8D053E005D7000 /* DiveTripAdvisor.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9947F3A81E8D053E005D7000 /* DiveTripAdvisor.xcdatamodeld */; };
 		9947F3AC1E8D053E005D7000 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9947F3AB1E8D053E005D7000 /* Assets.xcassets */; };
 		9947F3AF1E8D053E005D7000 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9947F3AD1E8D053E005D7000 /* LaunchScreen.storyboard */; };
@@ -24,6 +23,8 @@
 		999045D21E9A354F00AB52EF /* Book Shelf-30.png in Resources */ = {isa = PBXBuildFile; fileRef = 999045D11E9A354F00AB52EF /* Book Shelf-30.png */; };
 		999045D41E9A35FD00AB52EF /* Marker-30.png in Resources */ = {isa = PBXBuildFile; fileRef = 999045D31E9A35FD00AB52EF /* Marker-30.png */; };
 		999045D61E9A385800AB52EF /* Scuba Mask-30.png in Resources */ = {isa = PBXBuildFile; fileRef = 999045D51E9A385800AB52EF /* Scuba Mask-30.png */; };
+		999045DA1E9A55AD00AB52EF /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999045D91E9A55AD00AB52EF /* ProfileViewController.swift */; };
+		999045DC1E9A661900AB52EF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 999045DB1E9A661900AB52EF /* Main.storyboard */; };
 		99A702141E9931170028E942 /* LogsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A702121E9931170028E942 /* LogsTableViewController.swift */; };
 		99A702171E994F730028E942 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A702161E994F730028E942 /* Location.swift */; };
 /* End PBXBuildFile section */
@@ -49,7 +50,6 @@
 		9947F39E1E8D053D005D7000 /* DiveTripAdvisor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiveTripAdvisor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9947F3A11E8D053D005D7000 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = DiveTripAdvisor/AppDelegate.swift; sourceTree = "<group>"; };
 		9947F3A31E8D053E005D7000 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		9947F3A61E8D053E005D7000 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9947F3A91E8D053E005D7000 /* DiveTripAdvisor.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DiveTripAdvisor.xcdatamodel; sourceTree = "<group>"; };
 		9947F3AB1E8D053E005D7000 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9947F3AE1E8D053E005D7000 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -69,6 +69,8 @@
 		999045D11E9A354F00AB52EF /* Book Shelf-30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Book Shelf-30.png"; path = "Assets.xcassets/Book Shelf-30.png"; sourceTree = "<group>"; };
 		999045D31E9A35FD00AB52EF /* Marker-30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Marker-30.png"; path = "Assets.xcassets/Marker-30.png"; sourceTree = "<group>"; };
 		999045D51E9A385800AB52EF /* Scuba Mask-30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Scuba Mask-30.png"; path = "Assets.xcassets/Scuba Mask-30.png"; sourceTree = "<group>"; };
+		999045D91E9A55AD00AB52EF /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = ViewControllers/ProfileViewController.swift; sourceTree = "<group>"; };
+		999045DB1E9A661900AB52EF /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = DiveTripAdvisor/Main.storyboard; sourceTree = "<group>"; };
 		99A702121E9931170028E942 /* LogsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogsTableViewController.swift; sourceTree = "<group>"; };
 		99A702161E994F730028E942 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -101,6 +103,7 @@
 		9947F3951E8D053D005D7000 = {
 			isa = PBXGroup;
 			children = (
+				999045DB1E9A661900AB52EF /* Main.storyboard */,
 				9947F3A01E8D053D005D7000 /* DiveTripAdvisor */,
 				9947F3B81E8D053E005D7000 /* DiveTripAdvisorTests */,
 				9947F3C31E8D053E005D7000 /* DiveTripAdvisorUITests */,
@@ -126,7 +129,6 @@
 				9947F3D41E8D3C9A005D7000 /* Models */,
 				9947F3D31E8D0CB0005D7000 /* Assets */,
 				9947F3D21E8D0C29005D7000 /* SwiftFiles */,
-				9947F3A51E8D053E005D7000 /* Main.storyboard */,
 			);
 			path = DiveTripAdvisor;
 			sourceTree = "<group>";
@@ -198,6 +200,7 @@
 				9947F3A31E8D053E005D7000 /* ViewController.swift */,
 				99A702121E9931170028E942 /* LogsTableViewController.swift */,
 				999045CD1E99B0DA00AB52EF /* LocationsTableViewController.swift */,
+				999045D91E9A55AD00AB52EF /* ProfileViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -309,10 +312,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				999045DC1E9A661900AB52EF /* Main.storyboard in Resources */,
 				9947F3AF1E8D053E005D7000 /* LaunchScreen.storyboard in Resources */,
 				9947F3AC1E8D053E005D7000 /* Assets.xcassets in Resources */,
 				999045D41E9A35FD00AB52EF /* Marker-30.png in Resources */,
-				9947F3A71E8D053E005D7000 /* Main.storyboard in Resources */,
 				999045D61E9A385800AB52EF /* Scuba Mask-30.png in Resources */,
 				999045D21E9A354F00AB52EF /* Book Shelf-30.png in Resources */,
 				999045D01E9A346900AB52EF /* Book Shelf-50.png in Resources */,
@@ -346,6 +349,7 @@
 				9947F3AA1E8D053E005D7000 /* DiveTripAdvisor.xcdatamodeld in Sources */,
 				9947F3DF1E8D7B89005D7000 /* HttpRequesterDelegate.swift in Sources */,
 				99A702171E994F730028E942 /* Location.swift in Sources */,
+				999045DA1E9A55AD00AB52EF /* ProfileViewController.swift in Sources */,
 				99A702141E9931170028E942 /* LogsTableViewController.swift in Sources */,
 				9947F3DA1E8D40B7005D7000 /* User.swift in Sources */,
 				9947F3DD1E8D7B4B005D7000 /* HttpRequester.swift in Sources */,
@@ -385,14 +389,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		9947F3A51E8D053E005D7000 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9947F3A61E8D053E005D7000 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		9947F3AD1E8D053E005D7000 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

@@ -32,13 +32,8 @@ class User {
         self.email = dictionary["email"] as? String
         self.description = dictionary["description"] as? String
         self.logs = (dictionary["logs"] as? [Log])!
-        if let pictureDict = dictionary["imageUrl"] as? [String: Any] {
-            if let dataDict = pictureDict["data"] as? [String: Any] {
-                self.imageUrl = dataDict["url"] as? String
-                return
-            }
-        }
-        self.imageUrl = ""
+        self.imageUrl = dictionary["imageUrl"] as? String
+        
     }
     
     init (firstName: String?, lastName: String?, email: String?, id: String?, imageUrl: String?,description: String?,logs :[Log], confirmPassword: String?,username: String?,password: String?) {

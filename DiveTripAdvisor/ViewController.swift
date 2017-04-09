@@ -12,7 +12,7 @@ class ViewController: UIViewController, HttpRequesterDelegate {
     
     @IBOutlet weak var registerButton: UIButton!
     @IBOutlet weak var loginButton: UIButton!
-    var user: User!
+    let defaults = UserDefaults.standard
     
     var url: String {
         get{
@@ -32,14 +32,35 @@ class ViewController: UIViewController, HttpRequesterDelegate {
         self.http?.delegate = self
         
         self.http?.postJson(toUrl: self.url, withBody: ["username": emailInput.text!, "password" : passwordInput.text!])
-        print(["username": emailInput.text!, "password" : passwordInput.text!])
     }
+    
     override func viewDidLoad() {
         loginButton.layer.cornerRadius = 10
         registerButton.layer.cornerRadius = 10
         super.viewDidLoad()
         
         // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    func didReceiveData(data: Any) {
+      //  print(data)
+        if let response = data as? Dictionary<String,Any> {
+            var loggedUser =  User(dictionary: response["user"] as! [String: Any])
+            let token = response["token"] as! String
+            defaults.setValue(token, forKey: "token")
+            DispatchQueue.main.async {
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let controller = storyboard.instantiateViewController(withIdentifier: "profile")
+                
+                self.present(controller, animated: true, completion: nil)
+
+            }
+            
+        }
+    }
+    
+    func didReceiveError(error: HttpError) {
+        print(error)
     }
 
     override func didReceiveMemoryWarning() {
@@ -61,6 +82,5 @@ class ViewController: UIViewController, HttpRequesterDelegate {
         
 
     }
-    
 }
 
