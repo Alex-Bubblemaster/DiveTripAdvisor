@@ -17,10 +17,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var baseUrl: String = "http://divingguide.azurewebsites.net/api"
     var http: HttpRequester?
+    var navigationController:UINavigationController?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         self.http = HttpRequester()
+        self.navigationController = application.windows[0].rootViewController as? UINavigationController
         return true
     }
 

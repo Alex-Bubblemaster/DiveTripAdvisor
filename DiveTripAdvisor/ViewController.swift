@@ -51,9 +51,10 @@ class ViewController: UIViewController, HttpRequesterDelegate {
             
             DispatchQueue.main.async {
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let controller = storyboard.instantiateViewController(withIdentifier: "tabs")
+                let tabsVC = storyboard.instantiateViewController(withIdentifier: "tabs")
                 
-                self.present(controller, animated: true, completion: nil)
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                appDelegate.navigationController?.pushViewController(tabsVC, animated: true)
 
             }
             
