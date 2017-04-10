@@ -2,17 +2,17 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="16E195" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="AppLog" representedClassName="AppLog" syncable="YES" codeGenerationType="class">
         <attribute name="depth" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="diverId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="site" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="time" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <relationship name="sightings" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AppSighting" inverseName="newRelationship" inverseEntity="AppSighting" syncable="YES"/>
-        <relationship name="users" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AppUser" inverseName="relationship" inverseEntity="AppUser" syncable="YES"/>
         <fetchedProperty name="fetchedProperty" optional="YES" syncable="YES">
             <fetchRequest name="fetchedPropertyFetchRequest" entity="AppLog"/>
         </fetchedProperty>
     </entity>
     <entity name="AppSighting" representedClassName="AppSighting" syncable="YES" codeGenerationType="class">
-        <relationship name="newRelationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AppLog" inverseName="sightings" inverseEntity="AppLog" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="site" optional="YES" attributeType="String" syncable="YES"/>
         <fetchedProperty name="fetchedProperty" optional="YES" syncable="YES">
             <fetchRequest name="fetchedPropertyFetchRequest" entity="AppSighting"/>
         </fetchedProperty>
@@ -24,14 +24,13 @@
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AppLog" inverseName="users" inverseEntity="AppLog" syncable="YES"/>
         <fetchedProperty name="fetchedProperty" optional="YES" syncable="YES">
             <fetchRequest name="fetchedPropertyFetchRequest" entity="AppUser"/>
         </fetchedProperty>
     </entity>
     <elements>
-        <element name="AppUser" positionX="-63" positionY="-18" width="128" height="176"/>
-        <element name="AppSighting" positionX="-18" positionY="198" width="128" height="86"/>
-        <element name="AppLog" positionX="295" positionY="-72" width="128" height="161"/>
+        <element name="AppUser" positionX="-63" positionY="-18" width="128" height="161"/>
+        <element name="AppSighting" positionX="-18" positionY="198" width="128" height="101"/>
+        <element name="AppLog" positionX="295" positionY="-72" width="128" height="146"/>
     </elements>
 </model>

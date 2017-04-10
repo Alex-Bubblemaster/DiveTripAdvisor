@@ -12,7 +12,6 @@ class TabViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
     }
 
@@ -20,24 +19,6 @@ class TabViewController: UITabBarController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        getData()
-        super.viewWillAppear(animated)
-        
-        
-    }
-    func getData() {
-        do {
-            let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-            
-            let user = try context.fetch(AppUser.fetchRequest())
-            print("get data\(user)")
-        } catch {
-            print("Fetching Failed")
-        }
-    }
-    
 
     /*
     // MARK: - Navigation

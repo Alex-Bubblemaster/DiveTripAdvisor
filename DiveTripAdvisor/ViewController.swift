@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class ViewController: UIViewController, HttpRequesterDelegate {
     
@@ -14,23 +15,27 @@ class ViewController: UIViewController, HttpRequesterDelegate {
     @IBOutlet weak var loginButton: UIButton!
     let defaults = UserDefaults.standard
     
+    var appDelegate: AppDelegate {
+        get {
+            return (UIApplication.shared.delegate as! AppDelegate)
+        }
+    }
+    
     var url: String {
         get{
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            return "\(appDelegate.baseUrl)/authenticate"
+            return "\(self.appDelegate.baseUrl)/authenticate"
         }
     }
     
     var http: HttpRequester? {
-        get{
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            return appDelegate.http
+        get {
+            
+            return self.appDelegate.http
         }
     }
     
     func loginUser () {
         self.http?.delegate = self
-        
         self.http?.postJson(toUrl: self.url, withBody: ["username": emailInput.text!, "password" : passwordInput.text!])
     }
     
@@ -40,7 +45,11 @@ class ViewController: UIViewController, HttpRequesterDelegate {
 
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view, typically from a nib.
+        storeUser()
+    }
+    
+    func storeUser(){
+        
     }
     
     func didReceiveData(data: Any) {
@@ -53,18 +62,26 @@ class ViewController: UIViewController, HttpRequesterDelegate {
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let tabsVC = storyboard.instantiateViewController(withIdentifier: "tabs")
                 
-                let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                appDelegate.user = loggedUser
+                self.appDelegate.user = loggedUser
                 
                 // test
-                let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-                let user = AppUser(context: context) // Link Task & Context
-                user.lastName = loggedUser.lastName!
+                let context = self.appDelegate.persistentContainer.viewContext
+                let newUser = NSEntityDescription.insertNewObject(forEntityName: "AppUser", into:  context)
+                    //AppUser(context: context) // Link Task & Context
+                newUser.setValue(loggedUser.lastName, forKey: "lastName")
+                newUser.setValue(loggedUser.id, forKey: "id")
+                newUser.setValue(loggedUser.userDescription, forKey: "userDescription")
+                newUser.setValue(loggedUser.firstName, forKey: "firstName")
+                newUser.setValue(loggedUser.imageUrl, forKey: "imageUrl")
+                newUser.setValue(loggedUser.username, forKey: "username")
+
+                do {
+                    try context.save()
+                }
+                catch{
+                }
                 
-                // Save the data to coredata
-                (UIApplication.shared.delegate as! AppDelegate).saveContext()
-                
-                appDelegate.navigationController?.pushViewController(tabsVC, animated: true)
+                self.appDelegate.navigationController?.pushViewController(tabsVC, animated: true)
 
             }
             

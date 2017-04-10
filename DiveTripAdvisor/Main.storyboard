@@ -185,9 +185,6 @@
                                 <state key="normal" title="Add dive">
                                     <color key="titleShadowColor" red="0.58760102290000005" green="0.64507477290000004" blue="0.99698247350000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
-                                <connections>
-                                    <action selector="addDIve" destination="EIp-Pg-ZVD" eventType="touchUpInside" id="MAA-zH-vnf"/>
-                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oKZ-fC-UXP">
                                 <rect key="frame" x="141" y="496" width="188" height="51"/>
@@ -202,7 +199,7 @@
                     <tabBarItem key="tabBarItem" title="Profile" image="Scuba Mask-30.png" id="eFp-ri-0Lo"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="addBtn" destination="ufA-JA-Lvh" id="u6q-2M-dko"/>
+                        <outlet property="addDive" destination="ufA-JA-Lvh" id="WIE-U8-arN"/>
                         <outlet property="editBtn" destination="dIA-Mz-5pq" id="ZHj-cc-aXy"/>
                         <outlet property="firstName" destination="XSF-GT-b9y" id="Pmx-BN-D8q"/>
                         <outlet property="image" destination="t32-3p-f4d" id="3v3-iN-4pq"/>
