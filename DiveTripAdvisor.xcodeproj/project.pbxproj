@@ -18,6 +18,7 @@
 		9947F3DA1E8D40B7005D7000 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9947F3D91E8D40B7005D7000 /* User.swift */; };
 		9947F3DD1E8D7B4B005D7000 /* HttpRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9947F3DC1E8D7B4B005D7000 /* HttpRequester.swift */; };
 		9947F3DF1E8D7B89005D7000 /* HttpRequesterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9947F3DE1E8D7B89005D7000 /* HttpRequesterDelegate.swift */; };
+		9987CC6A1EA0213500FF7A8C /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9987CC691EA0213500FF7A8C /* File.swift */; };
 		999045CE1E99B0DA00AB52EF /* LocationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999045CD1E99B0DA00AB52EF /* LocationsTableViewController.swift */; };
 		999045D01E9A346900AB52EF /* Book Shelf-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 999045CF1E9A346900AB52EF /* Book Shelf-50.png */; };
 		999045D21E9A354F00AB52EF /* Book Shelf-30.png in Resources */ = {isa = PBXBuildFile; fileRef = 999045D11E9A354F00AB52EF /* Book Shelf-30.png */; };
@@ -66,6 +67,7 @@
 		9947F3D91E8D40B7005D7000 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		9947F3DC1E8D7B4B005D7000 /* HttpRequester.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpRequester.swift; sourceTree = "<group>"; };
 		9947F3DE1E8D7B89005D7000 /* HttpRequesterDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpRequesterDelegate.swift; sourceTree = "<group>"; };
+		9987CC691EA0213500FF7A8C /* File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		999045CD1E99B0DA00AB52EF /* LocationsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationsTableViewController.swift; path = ViewControllers/LocationsTableViewController.swift; sourceTree = "<group>"; };
 		999045CF1E9A346900AB52EF /* Book Shelf-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Book Shelf-50.png"; path = "Assets.xcassets/Book Shelf-50.png"; sourceTree = "<group>"; };
 		999045D11E9A354F00AB52EF /* Book Shelf-30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Book Shelf-30.png"; path = "Assets.xcassets/Book Shelf-30.png"; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 		9947F3A01E8D053D005D7000 /* DiveTripAdvisor */ = {
 			isa = PBXGroup;
 			children = (
+				9987CC681EA020FA00FF7A8C /* Data */,
 				99A7020D1E992AC60028E942 /* ViewControllers */,
 				9947F3DB1E8D7B2B005D7000 /* Http */,
 				9947F3D41E8D3C9A005D7000 /* Models */,
@@ -196,6 +199,14 @@
 				9947F3DE1E8D7B89005D7000 /* HttpRequesterDelegate.swift */,
 			);
 			name = Http;
+			sourceTree = "<group>";
+		};
+		9987CC681EA020FA00FF7A8C /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				9987CC691EA0213500FF7A8C /* File.swift */,
+			);
+			name = Data;
 			sourceTree = "<group>";
 		};
 		99A7020D1E992AC60028E942 /* ViewControllers */ = {
@@ -358,6 +369,7 @@
 				99A702171E994F730028E942 /* Location.swift in Sources */,
 				999045DA1E9A55AD00AB52EF /* ProfileViewController.swift in Sources */,
 				999045DE1E9AA63F00AB52EF /* PopUpViewController.swift in Sources */,
+				9987CC6A1EA0213500FF7A8C /* File.swift in Sources */,
 				99A702141E9931170028E942 /* LogsTableViewController.swift in Sources */,
 				9947F3DA1E8D40B7005D7000 /* User.swift in Sources */,
 				9947F3DD1E8D7B4B005D7000 /* HttpRequester.swift in Sources */,

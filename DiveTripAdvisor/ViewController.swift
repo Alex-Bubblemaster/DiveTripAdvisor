@@ -44,12 +44,25 @@ class ViewController: UIViewController, HttpRequesterDelegate {
         registerButton.layer.cornerRadius = 10
 
         super.viewDidLoad()
-        
-        storeUser()
     }
     
-    func storeUser(){
+    func storeUser(loggedUser: User){
+        // test
+        let context = self.appDelegate.persistentContainer.viewContext
+        let newUser = NSEntityDescription.insertNewObject(forEntityName: "AppUser", into:  context)
+        //AppUser(context: context) // Link Task & Context
+        newUser.setValue(loggedUser.lastName, forKey: "lastName")
+        newUser.setValue(loggedUser.id, forKey: "id")
+        newUser.setValue(loggedUser.userDescription, forKey: "userDescription")
+        newUser.setValue(loggedUser.firstName, forKey: "firstName")
+        newUser.setValue(loggedUser.imageUrl, forKey: "imageUrl")
+        newUser.setValue(loggedUser.username, forKey: "username")
         
+        do {
+            try context.save()
+        }
+        catch{
+        }
     }
     
     func didReceiveData(data: Any) {
@@ -61,25 +74,8 @@ class ViewController: UIViewController, HttpRequesterDelegate {
             DispatchQueue.main.async {
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let tabsVC = storyboard.instantiateViewController(withIdentifier: "tabs")
-                
+                self.storeUser(loggedUser: loggedUser)
                 self.appDelegate.user = loggedUser
-                
-                // test
-                let context = self.appDelegate.persistentContainer.viewContext
-                let newUser = NSEntityDescription.insertNewObject(forEntityName: "AppUser", into:  context)
-                    //AppUser(context: context) // Link Task & Context
-                newUser.setValue(loggedUser.lastName, forKey: "lastName")
-                newUser.setValue(loggedUser.id, forKey: "id")
-                newUser.setValue(loggedUser.userDescription, forKey: "userDescription")
-                newUser.setValue(loggedUser.firstName, forKey: "firstName")
-                newUser.setValue(loggedUser.imageUrl, forKey: "imageUrl")
-                newUser.setValue(loggedUser.username, forKey: "username")
-
-                do {
-                    try context.save()
-                }
-                catch{
-                }
                 
                 self.appDelegate.navigationController?.pushViewController(tabsVC, animated: true)
 

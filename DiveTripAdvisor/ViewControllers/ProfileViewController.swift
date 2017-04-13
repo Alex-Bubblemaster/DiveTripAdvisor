@@ -11,9 +11,15 @@ import CoreData
 
 class ProfileViewController : UIViewController {
     var user: User!
+    @IBOutlet weak var addDive: UIButton!
+    @IBOutlet weak var editBtn: UIButton!
+    @IBOutlet weak var username: UILabel!
+    @IBOutlet weak var firstName: UILabel!
+    @IBOutlet weak var lastName: UILabel!
+    @IBOutlet weak var userDescription: UILabel!
+    @IBOutlet weak var image: UIImageView!
+    
     override func viewDidLoad() {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        self.user = appDelegate.user
         getData()
         username.text = self.user.username
         let url = URL(string: self.user.imageUrl!)
@@ -26,16 +32,7 @@ class ProfileViewController : UIViewController {
         editBtn.layer.cornerRadius = 10
         
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
     }
-    @IBOutlet weak var addDive: UIButton!
-    @IBOutlet weak var editBtn: UIButton!
-    @IBOutlet weak var username: UILabel!
-    @IBOutlet weak var firstName: UILabel!
-    @IBOutlet weak var lastName: UILabel!
-    @IBOutlet weak var userDescription: UILabel!
-    @IBOutlet weak var image: UIImageView!
     
     @IBAction func edit() {
         let popOverVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "sbPopUpID") as! PopUpViewController
