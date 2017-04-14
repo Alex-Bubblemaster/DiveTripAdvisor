@@ -34,6 +34,12 @@ class ViewController: UIViewController, HttpRequesterDelegate {
         }
     }
     
+    var dataService : DataService {
+        get{
+            return DataService()
+        }
+    }
+    
     func loginUser () {
         self.http?.delegate = self
         self.http?.postJson(toUrl: self.url, withBody: ["username": emailInput.text!, "password" : passwordInput.text!])
@@ -46,25 +52,7 @@ class ViewController: UIViewController, HttpRequesterDelegate {
         super.viewDidLoad()
     }
     
-    func storeUser(loggedUser: User){
-        // test
-        let context = self.appDelegate.persistentContainer.viewContext
-        let newUser = NSEntityDescription.insertNewObject(forEntityName: "AppUser", into:  context)
-        //AppUser(context: context) // Link Task & Context
-        newUser.setValue(loggedUser.lastName, forKey: "lastName")
-        newUser.setValue(loggedUser.id, forKey: "id")
-        newUser.setValue(loggedUser.userDescription, forKey: "userDescription")
-        newUser.setValue(loggedUser.firstName, forKey: "firstName")
-        newUser.setValue(loggedUser.imageUrl, forKey: "imageUrl")
-        newUser.setValue(loggedUser.username, forKey: "username")
         
-        do {
-            try context.save()
-        }
-        catch{
-        }
-    }
-    
     func didReceiveData(data: Any) {
         if let response = data as? Dictionary<String,Any> {
             let loggedUser =  User(dictionary: response["user"] as! [String: Any])
@@ -74,11 +62,8 @@ class ViewController: UIViewController, HttpRequesterDelegate {
             DispatchQueue.main.async {
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let tabsVC = storyboard.instantiateViewController(withIdentifier: "tabs")
-                self.storeUser(loggedUser: loggedUser)
-                self.appDelegate.user = loggedUser
-                
+                self.dataService.storeUser(loggedUser: loggedUser)
                 self.appDelegate.navigationController?.pushViewController(tabsVC, animated: true)
-
             }
             
         }

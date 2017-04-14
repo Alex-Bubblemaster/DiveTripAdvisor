@@ -9,7 +9,18 @@
 import UIKit
 
 class PopUpViewController: UIViewController, HttpRequesterDelegate {
-    var user:User?
+    var dataService : DataService {
+        get{
+            return DataService()
+        }
+    }
+    
+    var user: User {
+        get {
+            return DataService.getUser()
+        }
+    }
+    
     var url: String {
         get{
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -27,15 +38,11 @@ class PopUpViewController: UIViewController, HttpRequesterDelegate {
     override func viewDidLoad() {
         cancel.layer.cornerRadius = 10
         save.layer.cornerRadius = 10
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
-        self.user = appDelegate.user
-        
-        imageUrl.text = self.user?.imageUrl
-        firstName.text = self.user?.firstName
-        lastName.text = self.user?.lastName
-        userDescription.text = self.user?.userDescription
-        super.viewDidLoad()
+        imageUrl.text = self.user.imageUrl
+        firstName.text = self.user.firstName
+        lastName.text = self.user.lastName
+        userDescription.text = self.user.userDescription
         self.view.backgroundColor = UIColor.black.withAlphaComponent(0.8)
         self.showAnimate()
     }
@@ -48,7 +55,7 @@ class PopUpViewController: UIViewController, HttpRequesterDelegate {
     @IBOutlet weak var save: UIButton!
     @IBAction func update(_ sender: UIButton) {
         self.http?.delegate = self
-        let username = self.user?.username
+        let username = self.user.username
         self.http?.postJson(toUrl: self.url, withBody:
             ["username": username!,
              "firstName": firstName.text!,
@@ -62,8 +69,7 @@ class PopUpViewController: UIViewController, HttpRequesterDelegate {
             let loggedUser =  User(dictionary: response["user"] as! [String: Any])
 
             DispatchQueue.main.async {
-                let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                appDelegate.user = loggedUser
+                // store user in core data
                    self.removeAnimate()
                 }
         }
@@ -92,6 +98,7 @@ class PopUpViewController: UIViewController, HttpRequesterDelegate {
         }, completion:{(finished : Bool)  in
             if (finished)
             {
+                super.view.setNeedsLayout()
                 self.view.removeFromSuperview()
             }
         });

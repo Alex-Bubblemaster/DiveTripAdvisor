@@ -30,8 +30,7 @@ class User {
         
     }
     
-    init( username: String?){
-        self.username = username
+    init(){
     }
     
     init (firstName: String?, lastName: String?, email: String?, id: String?, imageUrl: String?,userDescription: String?,logs :[Log]?,username: String?,password: String?) {

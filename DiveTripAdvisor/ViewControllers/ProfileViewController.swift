@@ -10,7 +10,12 @@ import UIKit
 import CoreData
 
 class ProfileViewController : UIViewController {
-    var user: User!
+    
+    var user: User {
+        get {
+            return DataService.getUser()
+        }
+    }
     @IBOutlet weak var addDive: UIButton!
     @IBOutlet weak var editBtn: UIButton!
     @IBOutlet weak var username: UILabel!
@@ -20,7 +25,6 @@ class ProfileViewController : UIViewController {
     @IBOutlet weak var image: UIImageView!
     
     override func viewDidLoad() {
-        getData()
         username.text = self.user.username
         let url = URL(string: self.user.imageUrl!)
         let data = try? Data(contentsOf: url!)
@@ -34,46 +38,17 @@ class ProfileViewController : UIViewController {
         super.viewDidLoad()
     }
     
+    override func viewWillAppear(_ animated: Bool){
+        print(self.user.lastName ?? "Default")
+    }
+    
     @IBAction func edit() {
         let popOverVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "sbPopUpID") as! PopUpViewController
         self.addChildViewController(popOverVC)
-        popOverVC.user = self.user
         
         popOverVC.view.frame = self.view.frame
         self.view.addSubview(popOverVC.view)
         popOverVC.didMove(toParentViewController: self)
-    }
-    
-    func getData() {
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "AppUser")
-        
-        request.returnsObjectsAsFaults = false
-        do {
-            let users = try context.fetch(request)
-            if users.count > 0 {
-                for user in users as! [NSManagedObject]{
-                    
-                    if let username = user.value(forKey: "username") as? String {
-                        self.user = User(username: username)                    }
-                    if let lastName = user.value(forKey: "lastName") as? String {
-                        self.user.lastName=lastName
-                    }
-                    if let imageUrl = user.value(forKey: "imageUrl") as? String {
-                        self.user.imageUrl=imageUrl
-                    }
-                    if let appUserDescription = user.value(forKey: "userDescription") as? String {
-                        self.user.userDescription=appUserDescription
-                    }
-                    if let firstName = user.value(forKey: "firstName") as? String {
-                        self.user.firstName=firstName
-                    }
-                }
-            }
-            
-        } catch {
-            print("Fetching Failed")
-        }
     }
     
     override func didReceiveMemoryWarning() {
