@@ -97,7 +97,11 @@ class PopUpViewController: UIViewController, HttpRequesterDelegate {
         }, completion:{(finished : Bool)  in
             if (finished)
             {
-                super.view.setNeedsDisplay()
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let tabs = storyboard.instantiateViewController(withIdentifier: "tabs")
+
+                (UIApplication.shared.delegate as! AppDelegate).navigationController?.pushViewController(tabs, animated: true)
+                tabs.view.removeFromSuperview();
                 self.view.removeFromSuperview()
             }
         });
