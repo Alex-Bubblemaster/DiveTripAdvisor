@@ -67,11 +67,10 @@ class PopUpViewController: UIViewController, HttpRequesterDelegate {
     func didReceiveData(data: Any) {
         if let response = data as? Dictionary<String,Any> {
             let loggedUser =  User(dictionary: response["user"] as! [String: Any])
-
+            self.dataService.updateUser(loggedUser: loggedUser)
             DispatchQueue.main.async {
-                // store user in core data
-                   self.removeAnimate()
-                }
+                self.removeAnimate()
+            }
         }
     }
     
@@ -98,12 +97,12 @@ class PopUpViewController: UIViewController, HttpRequesterDelegate {
         }, completion:{(finished : Bool)  in
             if (finished)
             {
-                super.view.setNeedsLayout()
+                super.view.setNeedsDisplay()
                 self.view.removeFromSuperview()
             }
         });
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

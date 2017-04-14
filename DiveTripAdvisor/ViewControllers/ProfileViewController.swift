@@ -38,10 +38,6 @@ class ProfileViewController : UIViewController {
         super.viewDidLoad()
     }
     
-    override func viewWillAppear(_ animated: Bool){
-        print(self.user.lastName ?? "Default")
-    }
-    
     @IBAction func edit() {
         let popOverVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "sbPopUpID") as! PopUpViewController
         self.addChildViewController(popOverVC)
