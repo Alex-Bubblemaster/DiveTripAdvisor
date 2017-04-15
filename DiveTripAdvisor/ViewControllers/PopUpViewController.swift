@@ -9,6 +9,7 @@
 import UIKit
 
 class PopUpViewController: UIViewController, HttpRequesterDelegate {
+    var hasChanges: Bool = false
     var dataService : DataService {
         get{
             return DataService()
@@ -68,15 +69,13 @@ class PopUpViewController: UIViewController, HttpRequesterDelegate {
         if let response = data as? Dictionary<String,Any> {
             let loggedUser =  User(dictionary: response["user"] as! [String: Any])
             self.dataService.updateUser(loggedUser: loggedUser)
+            hasChanges = true
             DispatchQueue.main.async {
                 self.removeAnimate()
             }
         }
     }
     
-    func didReceiveError(error: HttpError) {
-        print(error)
-    }
     @IBAction func closePopUp() {
         self.removeAnimate()
     }
@@ -97,11 +96,13 @@ class PopUpViewController: UIViewController, HttpRequesterDelegate {
         }, completion:{(finished : Bool)  in
             if (finished)
             {
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let tabs = storyboard.instantiateViewController(withIdentifier: "tabs")
-
-                (UIApplication.shared.delegate as! AppDelegate).navigationController?.pushViewController(tabs, animated: true)
-                tabs.view.removeFromSuperview();
+                if self.hasChanges == true {
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let tabs = storyboard.instantiateViewController(withIdentifier: "tabs")
+                    
+                    (UIApplication.shared.delegate as! AppDelegate).navigationController?.pushViewController(tabs, animated: true)
+                    tabs.view.removeFromSuperview();
+                }
                 self.view.removeFromSuperview()
             }
         });

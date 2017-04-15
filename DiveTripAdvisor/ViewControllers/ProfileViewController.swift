@@ -9,14 +9,33 @@
 import UIKit
 import CoreData
 
-class ProfileViewController : UIViewController {
+class ProfileViewController : UIViewController, HttpRequesterDelegate {
     
     var user: User {
         get {
             return DataService.getUser()
         }
     }
-    @IBOutlet weak var addDive: UIButton!
+    var http: HttpRequester? {
+        get {
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            return appDelegate.http
+        }
+    }
+    
+    var locationsUrl: String {
+        get{
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            return "\(appDelegate.baseUrl)/locations/read"
+        }
+    }
+    
+    func loadLocations () {
+        self.http?.delegate = self
+        self.http?.get(fromUrl: self.locationsUrl)
+    }
+    
+    @IBOutlet weak var addDiveBtn: UIButton!
     @IBOutlet weak var editBtn: UIButton!
     @IBOutlet weak var username: UILabel!
     @IBOutlet weak var firstName: UILabel!
@@ -32,10 +51,14 @@ class ProfileViewController : UIViewController {
         firstName.text = self.user.firstName
         lastName.text = self.user.lastName
         userDescription.text = self.user.userDescription
-        addDive.layer.cornerRadius = 10
+        addDiveBtn.layer.cornerRadius = 10
         editBtn.layer.cornerRadius = 10
         
         super.viewDidLoad()
+    }
+    
+    @IBAction func addDive(_ sender: UIButton) {
+        loadLocations()
     }
     
     @IBAction func edit() {
@@ -46,6 +69,25 @@ class ProfileViewController : UIViewController {
         self.view.addSubview(popOverVC.view)
         popOverVC.didMove(toParentViewController: self)
     }
+    
+    func didReceiveData(data: Any) {
+        if let array = data as? [String: Any] {
+            if let dataArray = array["data"] as? [Dictionary<String, Any>] {
+                let locations = dataArray.map(){Location(dictionary: $0)}
+                    .filter{$0.name != ""}
+                DispatchQueue.main.async {
+                    let popOverDiveVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "sbPopUpAddDive") as! PopUpAddDiveViewController
+                    popOverDiveVC.locations = locations
+                    self.addChildViewController(popOverDiveVC)
+                    
+                    popOverDiveVC.view.frame = self.view.frame
+                    self.view.addSubview(popOverDiveVC.view)
+                    popOverDiveVC.didMove(toParentViewController: self)
+                }
+            }
+        }
+    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

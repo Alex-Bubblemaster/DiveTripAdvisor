@@ -58,11 +58,11 @@ class ViewController: UIViewController, HttpRequesterDelegate {
             let loggedUser =  User(dictionary: response["user"] as! [String: Any])
             let token = response["token"] as! String
             defaults.setValue(token, forKey: "token")
-            
+            self.dataService.storeUser(loggedUser: loggedUser)
             DispatchQueue.main.async {
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let tabsVC = storyboard.instantiateViewController(withIdentifier: "tabs")
-                self.dataService.storeUser(loggedUser: loggedUser)
+                
                 self.appDelegate.navigationController?.pushViewController(tabsVC, animated: true)
             }
             
