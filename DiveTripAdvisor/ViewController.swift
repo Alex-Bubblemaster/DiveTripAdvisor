@@ -14,7 +14,7 @@ class ViewController: UIViewController, HttpRequesterDelegate {
     @IBOutlet weak var registerButton: UIButton!
     @IBOutlet weak var loginButton: UIButton!
     let defaults = UserDefaults.standard
-    
+    var user: User = User()
     var appDelegate: AppDelegate {
         get {
             return (UIApplication.shared.delegate as! AppDelegate)
@@ -55,10 +55,12 @@ class ViewController: UIViewController, HttpRequesterDelegate {
         
     func didReceiveData(data: Any) {
         if let response = data as? Dictionary<String,Any> {
-            let loggedUser =  User(dictionary: response["user"] as! [String: Any])
+            self.user =  User(dictionary: response["user"] as! [String: Any])
+            
+            print(self.user)
             let token = response["token"] as! String
             defaults.setValue(token, forKey: "token")
-            self.dataService.storeUser(loggedUser: loggedUser)
+            self.dataService.storeUser(loggedUser: self.user)
             DispatchQueue.main.async {
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let tabsVC = storyboard.instantiateViewController(withIdentifier: "tabs")

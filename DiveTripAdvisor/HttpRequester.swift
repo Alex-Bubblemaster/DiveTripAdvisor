@@ -81,7 +81,7 @@ class HttpRequester {
     }
     
     func postJson(toUrl urlString: String, withBody bodyDict: Dictionary<String, Any>, andHeaders headers: Dictionary<String, String> = [:]){
-        var headersWithJson: Dictionary<String,String>= [:]
+        var headersWithJson: Dictionary<String,String> = [:]
         headers.forEach(){ headersWithJson[$0.key] = $0.value }
         headersWithJson["Content-Type"] = "application/json"
         self.post(toUrl: urlString, withBody: bodyDict, andHeaders: headersWithJson)

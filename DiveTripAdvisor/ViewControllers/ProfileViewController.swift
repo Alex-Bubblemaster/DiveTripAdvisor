@@ -11,9 +11,14 @@ import CoreData
 
 class ProfileViewController : UIViewController, HttpRequesterDelegate {
     
-    var user: User {
+    var dataService : DataService {
         get {
-            return DataService.getUser()
+            return DataService()
+        }
+    }
+    var user: AppUser {
+        get {
+            return self.dataService.getUser()
         }
     }
     var http: HttpRequester? {
@@ -45,12 +50,12 @@ class ProfileViewController : UIViewController, HttpRequesterDelegate {
     
     override func viewDidLoad() {
         username.text = self.user.username
-        let url = URL(string: self.user.imageUrl!)
+        let url = URL(string: self.user.imageUrl ?? "https://period4respiratorycase6.wikispaces.com/space/showlogo/1304984043/logo.gif" )
         let data = try? Data(contentsOf: url!)
         image.image = UIImage(data: data!)
-        firstName.text = self.user.firstName
-        lastName.text = self.user.lastName
-        userDescription.text = self.user.userDescription
+        firstName.text = self.user.firstName ?? "Unknown"
+        lastName.text = self.user.lastName ?? "Unknown"
+        userDescription.text = self.user.userDescription ?? "Diver"
         addDiveBtn.layer.cornerRadius = 10
         editBtn.layer.cornerRadius = 10
         
@@ -78,6 +83,7 @@ class ProfileViewController : UIViewController, HttpRequesterDelegate {
                 DispatchQueue.main.async {
                     let popOverDiveVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "sbPopUpAddDive") as! PopUpAddDiveViewController
                     popOverDiveVC.locations = locations
+                   // popOverDiveVC.user = self.user
                     self.addChildViewController(popOverDiveVC)
                     
                     popOverDiveVC.view.frame = self.view.frame
@@ -88,12 +94,10 @@ class ProfileViewController : UIViewController, HttpRequesterDelegate {
         }
     }
     
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
     
     /*
      // MARK: - Navigation

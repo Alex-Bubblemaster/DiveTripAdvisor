@@ -11,14 +11,14 @@ import UIKit
 class PopUpViewController: UIViewController, HttpRequesterDelegate {
     var hasChanges: Bool = false
     var dataService : DataService {
-        get{
+        get {
             return DataService()
         }
     }
     
     var user: User {
         get {
-            return DataService.getUser()
+            return User() //self.dataService.getUser()
         }
     }
     
@@ -56,9 +56,8 @@ class PopUpViewController: UIViewController, HttpRequesterDelegate {
     @IBOutlet weak var save: UIButton!
     @IBAction func update(_ sender: UIButton) {
         self.http?.delegate = self
-        let username = self.user.username
         self.http?.postJson(toUrl: self.url, withBody:
-            ["username": username!,
+            ["username": self.user.username!,
              "firstName": firstName.text!,
              "lastName" : lastName.text!,
              "description": userDescription.text!,

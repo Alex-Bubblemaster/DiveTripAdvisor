@@ -8,59 +8,110 @@
 
 import UIKit
 
-class PopUpAddDiveViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
+class PopUpAddDiveViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, HttpRequesterDelegate {
     
     var hasChanges: Bool = false
-    
-    @IBOutlet weak var test: UILabel!
-    @IBOutlet weak var textBox: UITextField!
-    @IBOutlet weak var dropDown: UIPickerView!
     var locations: [Location] = []
-    
-    
-    
-    var user: User!
-    
+    var user: User = User()
+    var newLog: Log = Log()
+    var appDelegate: AppDelegate {
+        get {
+            return UIApplication.shared.delegate as! AppDelegate
+        }
+    }
     var userUpdateUrl: String {
-        get{
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            return "\(appDelegate.baseUrl)/updateUserInfo"
+        get {
+            return "\(self.appDelegate.baseUrl)/updateUserInfo"
+        }
+    }
+    var locationsUpdateUrl: String {
+        get {
+            return "\(self.appDelegate.baseUrl)/locations/update"
+        }
+    }
+    var http: HttpRequester? {
+        get {
+            return self.appDelegate.http
         }
     }
     
-    /*  var userUrl: String {
-     get {
-     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-     var curUser = DataService.getUser().id!
-     print(curUser)
-     return "\(appDelegate.baseUrl)/users/" + DataService.getUser().id!
-     }
-     }
-     
-     var locationsUpdateUrl: String {
-     get {
-     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-     return "\(appDelegate.baseUrl)/locations/update"
-     }
-     }*/
+    @IBOutlet weak var sightings: UITextView!
+    @IBOutlet weak var textBox: UITextField!
+    @IBOutlet weak var dropDown: UIPickerView!
+    @IBOutlet weak var site: UITextField!
+    @IBOutlet weak var depth: UITextField!
+    @IBOutlet weak var duration: UITextField!
     
-    /* func getUser () {
-     self.http?.delegate = self
-     self.http?.get(fromUrl: self.userUrl)
-     }
-     
-     @IBAction func update(_ sender: UIButton) {
-     self.http?.delegate = self
-     let username = self.user.username
-     self.http?.postJson(toUrl: self.userUrl, withBody:
-     ["username": username!,
-     "id": self.user.id!,
-     "logs": self.user.logs ?? [],
-     "firstName": self.user.firstName ?? "",
-     "lastName" : self.user.lastName ?? "",
-     "description": self.user.userDescription ?? "",
-     "imageUrl": self.user.imageUrl ?? "https://period4respiratorycase6.wikispaces.com/space/showlogo/1304984043/logo.gif"], andHeaders: ["authorization": UserDefaults.standard.value(forKey: "token") as! String])
-     }*/
+    @IBOutlet weak var saveBtn: UIButton!
+    @IBOutlet weak var cancelBtn: UIButton!
+    @IBAction func cancelDive(_ sender: UIButton) {
+        // TODO: Check close popup
+        self.removeAnimate()
+    }
+    
+    @IBAction func saveDive(_ sender: UIButton) {
+        createDive()
+        updateUser()
+        // wait/async
+        
+        //update location
+        
+        // close popup
+    }
+    
+    func createDive(){
+        if addDiveFormIsValid() {
+            if let sightingsText = self.sightings.text {
+                let mappedSightings = sightingsText.components(separatedBy: ",")
+                self.newLog.sightings = mappedSightings
+            }
+            self.newLog.depth = Int(self.depth.text!)
+            self.newLog.time = Int(self.duration.text!)
+            self.newLog.location = self.textBox.text!
+            self.newLog.site = self.site.text!
+        }
+    }
+    
+    func addDiveFormIsValid() -> Bool{
+        if (self.depth.text?.characters.count)! > 0
+            && (self.duration.text?.characters.count)! > 0
+            && (self.textBox.text?.characters.count)! > 0
+            && (self.site.text?.characters.count)! > 0 {
+            return true
+        }
+        return false
+    }
+    
+    func updateUser(){
+        if self.user.logs != nil {
+            self.user.logs!.append(self.newLog)
+        } else {
+            self.user.logs = [self.newLog]
+        }
+        
+        let diveLogJSON = self.user.logs!
+        let jsonCompatibleArray = diveLogJSON.map { log in
+            return [
+                "location":log.location!,
+                "depth":log.depth!,
+                "time":log.time!,
+                "site":log.site!,
+                "sightings": log.sightings!
+            ]
+            
+        }
+        
+        self.http?.delegate = self
+        self.http?.postJson(toUrl: self.userUpdateUrl, withBody:
+            [ "firstName" : self.user.firstName ?? "Unknown",
+              "lastName" : self.user.lastName ?? "Unknown",
+              "email": self.user.email ?? "Unknown",
+              "imageUrl":self.user.imageUrl!,
+              "description": self.user.userDescription ?? "Open Water Diver",
+              "username": self.user.username!,
+              "id": self.user.id!,
+              "logs": jsonCompatibleArray], andHeaders: ["authorization": UserDefaults.standard.value(forKey: "token") as! String])
+    }
     
     public func numberOfComponents(in pickerView: UIPickerView) -> Int{
         return 1
@@ -81,25 +132,16 @@ class PopUpAddDiveViewController: UIViewController, UIPickerViewDelegate, UIPick
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
         self.textBox.text = self.locations[row].name
         self.dropDown.isHidden = true
-        
     }
+    
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        
         if textField == self.textBox {
             self.dropDown.isHidden = false
-            //if you dont want the users to se the keyboard type:
-            
             textField.endEditing(true)
         }
-        
-    }
-    
-    @IBAction func closePopUp() {
-        self.removeAnimate()
     }
     
     func showAnimate(){
@@ -132,16 +174,30 @@ class PopUpAddDiveViewController: UIViewController, UIPickerViewDelegate, UIPick
     
     
     override func viewDidLoad() {
+        self.cancelBtn.layer.cornerRadius = 10
+        self.saveBtn.layer.cornerRadius = 10
+        self.sightings.layer.cornerRadius = 10
         super.viewDidLoad()
-        //   self.getUser()
+        // self.saveBtn.isUserInteractionEnabled = false
+        /* self.depth.delegate = self
+         self.textBox.delegate = self
+         self.duration.delegate = self
+         self.site.delegate = self*/
         // Do any additional setup after loading the view.
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
+    func didReceiveData(data: Any) {
+        if let response = data as? Dictionary<String,Any> {
+            print(response)
+        }
+    }
+    func didReceiveError(error: HttpError) {
+        print(error)
+    }
     
     /*
      // MARK: - Navigation

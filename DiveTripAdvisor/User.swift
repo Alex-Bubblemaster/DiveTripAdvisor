@@ -17,6 +17,7 @@ class User {
     var userDescription: String?
     var imageUrl: String?
     var logs :[Log]?
+    var email: String?
     
     init (dictionary: [String: Any]) {
         
@@ -25,15 +26,18 @@ class User {
         self.firstName = dictionary["firstName"] as? String
         self.lastName  = dictionary["lastName"] as? String
         self.userDescription = dictionary["description"] as? String
-        self.logs = (dictionary["logs"] as? [Log])!
+        self.logs = parseLogs(logs: dictionary["logs"] as! [[String:Any]])
         self.imageUrl = dictionary["imageUrl"] as? String
+        self.email = dictionary["email"] as? String
         
     }
     
     init(){
+        self.imageUrl = "https://period4respiratorycase6.wikispaces.com/space/showlogo/1304984043/logo.gif"
+        self.userDescription = "Diver"
     }
     
-    init (firstName: String?, lastName: String?, email: String?, id: String?, imageUrl: String?,userDescription: String?,logs :[Log]?,username: String?,password: String?) {
+    init (firstName: String?, lastName: String?, email: String?, id: String?, imageUrl: String?,userDescription: String?,logs :[Log]?,username: String?) {
         self.firstName = firstName
         self.lastName = lastName
         self.id = id
@@ -41,5 +45,14 @@ class User {
         self.userDescription = userDescription
         self.logs = logs
         self.username = username
+        self.email = email
+    }
+    
+    func parseLogs(logs :[[String: Any]]) -> [Log] {
+        var userLogs : [Log] = []
+        for log in logs {
+            userLogs.append(Log(dictionary: log))
+        }
+        return userLogs
     }
 }

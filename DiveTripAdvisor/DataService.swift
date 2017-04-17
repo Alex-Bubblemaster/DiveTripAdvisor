@@ -25,11 +25,10 @@ class DataService {
     }
     
     func updateUser(loggedUser: User){
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "AppUser")
         request.returnsObjectsAsFaults = false
         do {
-            let users = try context.fetch(request)
+            let users = try self.context.fetch(request)
             if users.count > 0 {
                 for user in users as! [NSManagedObject]{
                     if user.value(forKey: "username") as? String == loggedUser.username {
@@ -38,7 +37,8 @@ class DataService {
                         user.setValue(loggedUser.firstName, forKey: "firstName")
                         user.setValue(loggedUser.imageUrl, forKey: "imageUrl")
                         user.setValue(loggedUser.username, forKey: "username")
-                        print(user.value(forKey:"lastName") ?? "defaultUpdate")
+                        user.setValue(loggedUser.email, forKey: "email")
+                        user.setValue(loggedUser.id, forKey: "userId")
                     }
                 }
             }
@@ -48,53 +48,112 @@ class DataService {
         }
     }
     
-    class func getUser() -> User {
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "AppUser")
-        let loggedUser = User()
-        
-        request.returnsObjectsAsFaults = false
+    func getUser() -> AppUser {
+        let userFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "AppUser")
+        // userFetch.predicate = NSPredicate(format: "userid == %@", userid)
+        var loggedUser = AppUser()
+
         do {
-            let users = try context.fetch(request)
-            if users.count > 0 {
-                for user in users as! [NSManagedObject]{
-                    if let username = user.value(forKey: "username") as? String {
-                        loggedUser.username = username                    }
-                    if let lastName = user.value(forKey: "lastName") as? String {
-                        loggedUser.lastName=lastName
-                    }
-                    if let imageUrl = user.value(forKey: "imageUrl") as? String {
-                        loggedUser.imageUrl=imageUrl
-                    }
-                    if let appUserDescription = user.value(forKey: "userDescription") as? String {
-                        loggedUser.userDescription=appUserDescription
-                    }
-                    if let firstName = user.value(forKey: "firstName") as? String {
-                        loggedUser.firstName=firstName
-                    }
-                }
-            }
-            
+            let fetchedPerson = try self.context.fetch(userFetch)
+            loggedUser = fetchedPerson[0] as! AppUser
         } catch {
-            print("Fetching Failed")
+            
         }
+        /*let requestUsers = NSFetchRequest<NSFetchRequestResult>(entityName: "AppUser")
+         let requestLogs = NSFetchRequest<NSFetchRequestResult>(entityName: "AppLogs")
+         let requestSightings = NSFetchRequest<NSFetchRequestResult>(entityName: "AppSighting")
+                  let loggedUserLogs : [Log] = []
+         
+         
+         requestUsers.returnsObjectsAsFaults = false
+         requestLogs.returnsObjectsAsFaults = false
+         requestSightings.returnsObjectsAsFaults = false
+         do {
+         let users = try self.context.fetch(requestUsers)
+         let logs = try self.context.fetch(requestUsers)
+         let sightings = try self.context.fetch(requestUsers)
+         
+         
+         if users.count > 0 {
+         if logs.count > 0 {
+         for log in logs as! [NSManagedObject]{
+         if let location = log.value(forKey: "location") as? String {
+         let log = Log()
+         log.location = location
+         }
+         }
+         
+         }
+         for user in users as! [NSManagedObject]{
+         if let username = user.value(forKey: "username") as? String {
+         loggedUser.username = username                    }
+         if let lastName = user.value(forKey: "lastName") as? String {
+         loggedUser.lastName=lastName
+         }
+         if let imageUrl = user.value(forKey: "imageUrl") as? String {
+         loggedUser.imageUrl = imageUrl
+         }
+         if let appUserDescription = user.value(forKey: "userDescription") as? String {
+         loggedUser.userDescription=appUserDescription
+         }
+         if let firstName = user.value(forKey: "firstName") as? String {
+         loggedUser.firstName = firstName
+         }
+         if let userId = user.value(forKey: "userId") as? String {
+         loggedUser.id = userId
+         }
+         if let email = user.value(forKey: "email") as? String {
+         loggedUser.email = email
+         }
+         }
+         }
+         
+         } catch {
+         print("Fetching Failed")
+         }*/
+        
         return loggedUser
     }
     
     func storeUser(loggedUser: User){
-        // test
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        let newUser = NSEntityDescription.insertNewObject(forEntityName: "AppUser", into:  context)
-        //AppUser(context: context) // Link Task & Context
-        newUser.setValue(loggedUser.lastName, forKey: "lastName")
-        newUser.setValue(loggedUser.id, forKey: "id")
-        newUser.setValue(loggedUser.userDescription, forKey: "userDescription")
-        newUser.setValue(loggedUser.firstName, forKey: "firstName")
-        newUser.setValue(loggedUser.imageUrl, forKey: "imageUrl")
-        newUser.setValue(loggedUser.username, forKey: "username")
+        
+        let appUserEntity = NSEntityDescription.entity(forEntityName: "AppUser", in:  self.context)
+        let newUser: AppUser = AppUser(entity: appUserEntity!, insertInto: self.context)
+        
+        newUser.id = loggedUser.id
+        newUser.lastName = loggedUser.lastName
+        newUser.userDescription = loggedUser.userDescription
+        newUser.firstName = loggedUser.firstName
+        newUser.imageUrl = loggedUser.imageUrl
+        newUser.username = loggedUser.username
+        newUser.email = loggedUser.email
+        
+        
+        for log in loggedUser.logs!  {
+            
+            let appLogEntity = NSEntityDescription.entity(forEntityName: "AppLog", in:  self.context)
+            let newAppLog: AppLog = AppLog(entity: appLogEntity!, insertInto: self.context)
+            
+            newAppLog.depth = Int16(log.depth!)
+            newAppLog.time = Int16(log.time!)
+            newAppLog.location = log.location
+            newAppLog.site = log.site
+            newAppLog.diverId = newUser.id
+            newUser.addToLog(newAppLog)
+            
+            for sighting in log.sightings! {
+                let appSightingEntity = NSEntityDescription.entity(forEntityName: "AppSighting", in:  self.context)
+                let newSighting: AppSighting = AppSighting(entity: appSightingEntity!, insertInto: self.context)
+                
+                newSighting.name = sighting
+                
+                newSighting.addToLog(newAppLog)
+                newAppLog.addToSighting(newSighting)
+            }
+        }
         
         do {
-            try context.save()
+            try self.context.save()
         }
         catch{
         }

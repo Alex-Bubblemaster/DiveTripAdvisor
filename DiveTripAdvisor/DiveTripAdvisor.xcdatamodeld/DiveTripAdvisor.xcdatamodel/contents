@@ -1,36 +1,40 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="16E195" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16E195" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="AppLog" representedClassName="AppLog" syncable="YES" codeGenerationType="class">
         <attribute name="depth" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="diverId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="site" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="time" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="sighting" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AppSighting" inverseName="log" inverseEntity="AppSighting" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AppUser" inverseName="log" inverseEntity="AppUser" syncable="YES"/>
         <fetchedProperty name="fetchedProperty" optional="YES" syncable="YES">
             <fetchRequest name="fetchedPropertyFetchRequest" entity="AppLog"/>
         </fetchedProperty>
     </entity>
     <entity name="AppSighting" representedClassName="AppSighting" syncable="YES" codeGenerationType="class">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="site" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="log" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AppLog" inverseName="sighting" inverseEntity="AppLog" syncable="YES"/>
         <fetchedProperty name="fetchedProperty" optional="YES" syncable="YES">
             <fetchRequest name="fetchedPropertyFetchRequest" entity="AppSighting"/>
         </fetchedProperty>
     </entity>
     <entity name="AppUser" representedClassName="AppUser" syncable="YES" codeGenerationType="class">
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="imageUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="log" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AppLog" inverseName="user" inverseEntity="AppLog" syncable="YES"/>
         <fetchedProperty name="fetchedProperty" optional="YES" syncable="YES">
             <fetchRequest name="fetchedPropertyFetchRequest" entity="AppUser"/>
         </fetchedProperty>
     </entity>
     <elements>
-        <element name="AppUser" positionX="-63" positionY="-18" width="128" height="161"/>
-        <element name="AppSighting" positionX="-18" positionY="198" width="128" height="101"/>
-        <element name="AppLog" positionX="295" positionY="-72" width="128" height="146"/>
+        <element name="AppLog" positionX="295" positionY="-72" width="128" height="179"/>
+        <element name="AppSighting" positionX="-18" positionY="198" width="128" height="104"/>
+        <element name="AppUser" positionX="-63" positionY="-18" width="128" height="194"/>
     </elements>
 </model>

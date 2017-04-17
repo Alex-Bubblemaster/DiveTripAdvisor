@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9913EAA11EA51CD400492252 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9913EAA01EA51CD400492252 /* Default-568h@2x.png */; };
 		9947F3A21E8D053E005D7000 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9947F3A11E8D053D005D7000 /* AppDelegate.swift */; };
 		9947F3A41E8D053E005D7000 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9947F3A31E8D053E005D7000 /* ViewController.swift */; };
 		9947F3AA1E8D053E005D7000 /* DiveTripAdvisor.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9947F3A81E8D053E005D7000 /* DiveTripAdvisor.xcdatamodeld */; };
@@ -51,6 +52,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9913EAA01EA51CD400492252 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		9947F39E1E8D053D005D7000 /* DiveTripAdvisor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiveTripAdvisor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9947F3A11E8D053D005D7000 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = DiveTripAdvisor/AppDelegate.swift; sourceTree = "<group>"; };
 		9947F3A31E8D053E005D7000 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 		9947F3951E8D053D005D7000 = {
 			isa = PBXGroup;
 			children = (
+				9913EAA01EA51CD400492252 /* Default-568h@2x.png */,
 				999045DB1E9A661900AB52EF /* Main.storyboard */,
 				9947F3A01E8D053D005D7000 /* DiveTripAdvisor */,
 				9947F3B81E8D053E005D7000 /* DiveTripAdvisorTests */,
@@ -337,6 +340,7 @@
 				9947F3AC1E8D053E005D7000 /* Assets.xcassets in Resources */,
 				999045D41E9A35FD00AB52EF /* Marker-30.png in Resources */,
 				999045D61E9A385800AB52EF /* Scuba Mask-30.png in Resources */,
+				9913EAA11EA51CD400492252 /* Default-568h@2x.png in Resources */,
 				999045D21E9A354F00AB52EF /* Book Shelf-30.png in Resources */,
 				999045D01E9A346900AB52EF /* Book Shelf-50.png in Resources */,
 			);

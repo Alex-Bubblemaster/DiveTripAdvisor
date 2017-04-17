@@ -9,18 +9,21 @@
 import Foundation
 
 class Log {
-    let location: String?
-    let depth: Int?
-    let time: Int?
-    let sightings: [String]?
-    let site: String?
+    var location: String?
+    var depth: Int?
+    var time: Int?
+    var sightings: [String]?
+    var site: String?
     
     init (dictionary: [String: Any]) {
-        self.location = (dictionary["location"] as? String)
-        self.depth = (dictionary["depth"] as? Int)
-        self.time = (dictionary["time"] as? Int)
-        self.sightings = (dictionary["sightings"] as? [String])
-        self.site = dictionary["site"] as? String
+        self.location = (dictionary["location"] as! String)
+        self.depth = Int(dictionary["depth"] as! String)
+        self.time = Int(dictionary["time"] as! String)
+        self.sightings = (dictionary["sightings"] as! [String])
+        self.site = dictionary["site"] as! String
+    }
+    
+    init (){
     }
 
     init(location: String?, depth: Int?, time: Int?,sightings: [String]?, site: String?) {
