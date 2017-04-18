@@ -32,6 +32,9 @@
 		999045E01E9AC6C000AB52EF /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999045DF1E9AC6C000AB52EF /* TabViewController.swift */; };
 		99A702141E9931170028E942 /* LogsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A702121E9931170028E942 /* LogsTableViewController.swift */; };
 		99A702171E994F730028E942 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A702161E994F730028E942 /* Location.swift */; };
+		99ED2FC21EA68B4B00C7981B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 99ED2FC11EA68B4B00C7981B /* Assets.xcassets */; };
+		99ED2FC41EA68BA600C7981B /* Literature-30.png in Resources */ = {isa = PBXBuildFile; fileRef = 99ED2FC31EA68BA600C7981B /* Literature-30.png */; };
+		99ED2FC61EA68C3500C7981B /* MyLogsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99ED2FC51EA68C3500C7981B /* MyLogsTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +86,9 @@
 		999045DF1E9AC6C000AB52EF /* TabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TabViewController.swift; path = ViewControllers/TabViewController.swift; sourceTree = "<group>"; };
 		99A702121E9931170028E942 /* LogsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogsTableViewController.swift; sourceTree = "<group>"; };
 		99A702161E994F730028E942 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		99ED2FC11EA68B4B00C7981B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		99ED2FC31EA68BA600C7981B /* Literature-30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Literature-30.png"; path = "Assets.xcassets/Literature-30.png"; sourceTree = "<group>"; };
+		99ED2FC51EA68C3500C7981B /* MyLogsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyLogsTableViewController.swift; path = ViewControllers/MyLogsTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +184,8 @@
 		9947F3D31E8D0CB0005D7000 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				99ED2FC31EA68BA600C7981B /* Literature-30.png */,
+				99ED2FC11EA68B4B00C7981B /* Assets.xcassets */,
 				999045D51E9A385800AB52EF /* Scuba Mask-30.png */,
 				999045D31E9A35FD00AB52EF /* Marker-30.png */,
 				999045D11E9A354F00AB52EF /* Book Shelf-30.png */,
@@ -224,6 +232,7 @@
 				999045D91E9A55AD00AB52EF /* ProfileViewController.swift */,
 				999045DF1E9AC6C000AB52EF /* TabViewController.swift */,
 				997F97941EA11F1400D21F9E /* PopUpAddDiveViewController.swift */,
+				99ED2FC51EA68C3500C7981B /* MyLogsTableViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -336,12 +345,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				999045DC1E9A661900AB52EF /* Main.storyboard in Resources */,
+				99ED2FC41EA68BA600C7981B /* Literature-30.png in Resources */,
 				9947F3AF1E8D053E005D7000 /* LaunchScreen.storyboard in Resources */,
 				9947F3AC1E8D053E005D7000 /* Assets.xcassets in Resources */,
 				999045D41E9A35FD00AB52EF /* Marker-30.png in Resources */,
 				999045D61E9A385800AB52EF /* Scuba Mask-30.png in Resources */,
 				9913EAA11EA51CD400492252 /* Default-568h@2x.png in Resources */,
 				999045D21E9A354F00AB52EF /* Book Shelf-30.png in Resources */,
+				99ED2FC21EA68B4B00C7981B /* Assets.xcassets in Resources */,
 				999045D01E9A346900AB52EF /* Book Shelf-50.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -379,6 +390,7 @@
 				999045DE1E9AA63F00AB52EF /* PopUpViewController.swift in Sources */,
 				997F97951EA11F1400D21F9E /* PopUpAddDiveViewController.swift in Sources */,
 				99A702141E9931170028E942 /* LogsTableViewController.swift in Sources */,
+				99ED2FC61EA68C3500C7981B /* MyLogsTableViewController.swift in Sources */,
 				9947F3DA1E8D40B7005D7000 /* User.swift in Sources */,
 				9947F3DD1E8D7B4B005D7000 /* HttpRequester.swift in Sources */,
 				9947F3A21E8D053E005D7000 /* AppDelegate.swift in Sources */,

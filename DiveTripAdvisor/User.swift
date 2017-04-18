@@ -23,11 +23,11 @@ class User {
         
         self.id = dictionary["id"] as? String
         self.username = dictionary["username"] as? String
-        self.firstName = dictionary["firstName"] as? String
-        self.lastName  = dictionary["lastName"] as? String
-        self.userDescription = dictionary["description"] as? String
+        self.firstName = dictionary["firstName"] as? String ?? "Unknown"
+        self.lastName  = dictionary["lastName"] as? String ?? "Unknown"
+        self.userDescription = dictionary["description"] as? String ?? "Diver"
         self.logs = parseLogs(logs: dictionary["logs"] as! [[String:Any]])
-        self.imageUrl = dictionary["imageUrl"] as? String
+        self.imageUrl = dictionary["imageUrl"] as? String ?? "https://period4respiratorycase6.wikispaces.com/space/showlogo/1304984043/logo.gif"
         self.email = dictionary["email"] as? String
         
     }

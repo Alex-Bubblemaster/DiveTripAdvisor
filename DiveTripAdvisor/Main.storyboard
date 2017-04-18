@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="bZ5-ms-ugD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="bZ5-ms-ugD">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -104,6 +104,7 @@
                         <segue destination="EIp-Pg-ZVD" kind="relationship" relationship="viewControllers" id="hnm-yG-IaR"/>
                         <segue destination="khB-gb-PGd" kind="relationship" relationship="viewControllers" id="qXo-MA-4sl"/>
                         <segue destination="A19-5W-sjF" kind="relationship" relationship="viewControllers" id="QNn-Zh-tcV"/>
+                        <segue destination="fTW-Cz-yH8" kind="relationship" relationship="viewControllers" id="MWB-fe-yk3"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DEz-xW-ZdK" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -501,7 +502,7 @@
                                 <rect key="frame" x="0.0" y="35" width="375" height="64"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TTi-b2-aBr" id="Ckj-AV-r9k">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="63"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="63.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -517,6 +518,36 @@
             </objects>
             <point key="canvasLocation" x="-1431.2" y="-421.43928035982015"/>
         </scene>
+        <!--My Logs-->
+        <scene sceneID="FGe-bN-XvU">
+            <objects>
+                <tableViewController id="fTW-Cz-yH8" customClass="MyLogsTableViewController" customModule="DiveTripAdvisor" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="O7f-R1-q4P">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="HPC-4F-OMm">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HPC-4F-OMm" id="AjE-Af-2cX">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="fTW-Cz-yH8" id="Vad-1J-CYV"/>
+                            <outlet property="delegate" destination="fTW-Cz-yH8" id="ACM-HJ-xgU"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="My Logs" selectedImage="Literature-30.png" id="EbO-xQ-GWV"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="J7F-o8-nd9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3591" y="218"/>
+        </scene>
         <!--Locations-->
         <scene sceneID="cW8-Yv-Rk1">
             <objects>
@@ -530,7 +561,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ngW-OT-2mC" id="dtt-oC-pky">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -572,6 +603,7 @@
     <resources>
         <image name="5245611577_781da01a65" width="375" height="500"/>
         <image name="Book Shelf-30.png" width="30" height="30"/>
+        <image name="Literature-30.png" width="30" height="30"/>
         <image name="Marker-30.png" width="30" height="30"/>
         <image name="Scuba Mask-30.png" width="30" height="30"/>
     </resources>

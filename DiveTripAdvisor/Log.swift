@@ -20,17 +20,17 @@ class Log {
         self.depth = Int(dictionary["depth"] as! String)
         self.time = Int(dictionary["time"] as! String)
         self.sightings = (dictionary["sightings"] as! [String])
-        self.site = dictionary["site"] as! String
+        self.site = dictionary["site"] as? String
     }
     
     init (){
     }
 
     init(location: String?, depth: Int?, time: Int?,sightings: [String]?, site: String?) {
-        self.location=location
-        self.depth=depth
-        self.time=time
-        self.sightings=sightings
-        self.site=site
+        self.location = location
+        self.depth = depth
+        self.time = time
+        self.sightings = sightings
+        self.site = site
     }
 }

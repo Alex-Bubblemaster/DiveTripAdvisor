@@ -50,69 +50,13 @@ class DataService {
     
     func getUser() -> AppUser {
         let userFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "AppUser")
-        // userFetch.predicate = NSPredicate(format: "userid == %@", userid)
-        var loggedUser = AppUser()
-
         do {
             let fetchedPerson = try self.context.fetch(userFetch)
-            loggedUser = fetchedPerson[0] as! AppUser
+            return fetchedPerson[0] as! AppUser
         } catch {
-            
         }
-        /*let requestUsers = NSFetchRequest<NSFetchRequestResult>(entityName: "AppUser")
-         let requestLogs = NSFetchRequest<NSFetchRequestResult>(entityName: "AppLogs")
-         let requestSightings = NSFetchRequest<NSFetchRequestResult>(entityName: "AppSighting")
-                  let loggedUserLogs : [Log] = []
-         
-         
-         requestUsers.returnsObjectsAsFaults = false
-         requestLogs.returnsObjectsAsFaults = false
-         requestSightings.returnsObjectsAsFaults = false
-         do {
-         let users = try self.context.fetch(requestUsers)
-         let logs = try self.context.fetch(requestUsers)
-         let sightings = try self.context.fetch(requestUsers)
-         
-         
-         if users.count > 0 {
-         if logs.count > 0 {
-         for log in logs as! [NSManagedObject]{
-         if let location = log.value(forKey: "location") as? String {
-         let log = Log()
-         log.location = location
-         }
-         }
-         
-         }
-         for user in users as! [NSManagedObject]{
-         if let username = user.value(forKey: "username") as? String {
-         loggedUser.username = username                    }
-         if let lastName = user.value(forKey: "lastName") as? String {
-         loggedUser.lastName=lastName
-         }
-         if let imageUrl = user.value(forKey: "imageUrl") as? String {
-         loggedUser.imageUrl = imageUrl
-         }
-         if let appUserDescription = user.value(forKey: "userDescription") as? String {
-         loggedUser.userDescription=appUserDescription
-         }
-         if let firstName = user.value(forKey: "firstName") as? String {
-         loggedUser.firstName = firstName
-         }
-         if let userId = user.value(forKey: "userId") as? String {
-         loggedUser.id = userId
-         }
-         if let email = user.value(forKey: "email") as? String {
-         loggedUser.email = email
-         }
-         }
-         }
-         
-         } catch {
-         print("Fetching Failed")
-         }*/
         
-        return loggedUser
+        return AppUser()
     }
     
     func storeUser(loggedUser: User){
@@ -127,7 +71,6 @@ class DataService {
         newUser.imageUrl = loggedUser.imageUrl
         newUser.username = loggedUser.username
         newUser.email = loggedUser.email
-        
         
         for log in loggedUser.logs!  {
             
@@ -158,7 +101,6 @@ class DataService {
         catch{
         }
     }
-    
 }
 
 
