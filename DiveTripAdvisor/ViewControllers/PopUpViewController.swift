@@ -9,16 +9,15 @@
 import UIKit
 
 class PopUpViewController: UIViewController, HttpRequesterDelegate {
-    var hasChanges: Bool = false
     var dataService : DataService {
         get {
             return DataService()
         }
     }
     
-    var user: User {
+    var user: AppUser {
         get {
-            return User() //self.dataService.getUser()
+            return self.dataService.getUser()
         }
     }
     
@@ -35,7 +34,7 @@ class PopUpViewController: UIViewController, HttpRequesterDelegate {
             return appDelegate.http
         }
     }
-    
+    var hasChanges: Bool = false
     override func viewDidLoad() {
         cancel.layer.cornerRadius = 10
         save.layer.cornerRadius = 10
@@ -55,9 +54,24 @@ class PopUpViewController: UIViewController, HttpRequesterDelegate {
     @IBOutlet weak var cancel: UIButton!
     @IBOutlet weak var save: UIButton!
     @IBAction func update(_ sender: UIButton) {
+        var userLogs : [[String:Any]] = []
+        let diveLogsToMap = self.user.log!.allObjects as! [AppLog]
+        for log in diveLogsToMap {
+            userLogs.append([
+                "location":log.location!,
+                "depth":log.depth,
+                "time":log.time,
+                "site":log.site!,
+                "sightings": (log.sighting?.allObjects as![AppSighting]).map { String(describing: $0)}
+                ])
+        }
+        
         self.http?.delegate = self
         self.http?.postJson(toUrl: self.url, withBody:
             ["username": self.user.username!,
+             "logs": userLogs,
+             "id": self.user.id!,
+             "email": self.user.email!,
              "firstName": firstName.text!,
              "lastName" : lastName.text!,
              "description": userDescription.text!,
@@ -67,7 +81,7 @@ class PopUpViewController: UIViewController, HttpRequesterDelegate {
     func didReceiveData(data: Any) {
         if let response = data as? Dictionary<String,Any> {
             let loggedUser =  User(dictionary: response["user"] as! [String: Any])
-            self.dataService.updateUser(loggedUser: loggedUser)
+            self.dataService.updateUserInfo(loggedUser: loggedUser)
             hasChanges = true
             DispatchQueue.main.async {
                 self.removeAnimate()

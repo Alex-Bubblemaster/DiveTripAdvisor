@@ -24,21 +24,58 @@ class DataService {
         }
     }
     
-    func updateUser(loggedUser: User){
+    func createLogForUser(loggedUser: AppUser, newLog: Log){
+        let appLogEntity = NSEntityDescription.entity(forEntityName: "AppLog", in:  self.context)
+        let newAppLog: AppLog = AppLog(entity: appLogEntity!, insertInto: self.context)
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "AppUser")
+        
         request.returnsObjectsAsFaults = false
         do {
             let users = try self.context.fetch(request)
             if users.count > 0 {
-                for user in users as! [NSManagedObject]{
-                    if user.value(forKey: "username") as? String == loggedUser.username {
-                        user.setValue(loggedUser.lastName, forKey: "lastName")
-                        user.setValue(loggedUser.userDescription, forKey: "userDescription")
-                        user.setValue(loggedUser.firstName, forKey: "firstName")
-                        user.setValue(loggedUser.imageUrl, forKey: "imageUrl")
-                        user.setValue(loggedUser.username, forKey: "username")
-                        user.setValue(loggedUser.email, forKey: "email")
-                        user.setValue(loggedUser.id, forKey: "userId")
+                for user in users as! [AppUser]{
+                    if user.id == loggedUser.id {
+                        newAppLog.depth = Int16(newLog.depth!)
+                        newAppLog.time = Int16(newLog.time!)
+                        newAppLog.location = newLog.location
+                        newAppLog.site = newLog.site
+                        newAppLog.diverId = user.id
+                        user.addToLog(newAppLog)
+                        
+                        for sighting in newLog.sightings! {
+                            let appSightingEntity = NSEntityDescription.entity(forEntityName: "AppSighting", in:  self.context)
+                            let newSighting: AppSighting = AppSighting(entity: appSightingEntity!, insertInto: self.context)
+                            
+                            newSighting.name = sighting
+                            
+                            newSighting.addToLog(newAppLog)
+                            newAppLog.addToSighting(newSighting)
+                        }
+                        try self.context.save()
+                    }
+                }
+            }
+        } catch {
+        }
+    }
+    
+    func updateUserInfo(loggedUser: User){
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "AppUser")
+        
+        request.returnsObjectsAsFaults = false
+        do {
+            let users = try self.context.fetch(request)
+            if users.count > 0 {
+                for user in users as! [AppUser]{
+                    if user.id == loggedUser.id {
+                        user.email = loggedUser.email
+                        user.lastName = loggedUser.lastName
+                        user.userDescription = loggedUser.userDescription
+                        user.firstName = loggedUser.firstName
+                        user.imageUrl = loggedUser.imageUrl
+                        user.username = loggedUser.username
+                        
+                        try self.context.save()
                     }
                 }
             }
@@ -84,14 +121,17 @@ class DataService {
             newAppLog.diverId = newUser.id
             newUser.addToLog(newAppLog)
             
-            for sighting in log.sightings! {
-                let appSightingEntity = NSEntityDescription.entity(forEntityName: "AppSighting", in:  self.context)
-                let newSighting: AppSighting = AppSighting(entity: appSightingEntity!, insertInto: self.context)
-                
-                newSighting.name = sighting
-                
-                newSighting.addToLog(newAppLog)
-                newAppLog.addToSighting(newSighting)
+            if log.sightings != nil {
+             
+                for sighting in log.sightings! {
+                    let appSightingEntity = NSEntityDescription.entity(forEntityName: "AppSighting", in:  self.context)
+                    let newSighting: AppSighting = AppSighting(entity: appSightingEntity!, insertInto: self.context)
+                    
+                    newSighting.name = sighting
+                    
+                    newSighting.addToLog(newAppLog)
+                    newAppLog.addToSighting(newSighting)
+                }
             }
         }
         

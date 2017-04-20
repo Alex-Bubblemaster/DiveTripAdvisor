@@ -12,8 +12,20 @@ class PopUpAddDiveViewController: UIViewController, UIPickerViewDelegate, UIPick
     
     var hasChanges: Bool = false
     var locations: [Location] = []
-    var user: User = User()
+    
+    var dataService : DataService {
+        get {
+            return DataService()
+        }
+    }
+    var user: AppUser {
+        get {
+            return self.dataService.getUser()
+        }
+    }
+
     var newLog: Log = Log()
+    
     var appDelegate: AppDelegate {
         get {
             return UIApplication.shared.delegate as! AppDelegate
@@ -69,6 +81,8 @@ class PopUpAddDiveViewController: UIViewController, UIPickerViewDelegate, UIPick
             self.newLog.time = Int(self.duration.text!)
             self.newLog.location = self.textBox.text!
             self.newLog.site = self.site.text!
+            
+            self.dataService.createLogForUser(loggedUser: self.user, newLog: newLog)
         }
     }
     
@@ -83,24 +97,18 @@ class PopUpAddDiveViewController: UIViewController, UIPickerViewDelegate, UIPick
     }
     
     func updateUser(){
-        if self.user.logs != nil {
-            self.user.logs!.append(self.newLog)
-        } else {
-            self.user.logs = [self.newLog]
-        }
         
-        let diveLogJSON = self.user.logs!
+        let diveLogJSON = self.user.log!.allObjects as! [AppLog]
         let jsonCompatibleArray = diveLogJSON.map { log in
             return [
                 "location":log.location!,
-                "depth":log.depth!,
-                "time":log.time!,
+                "depth":log.depth,
+                "time":log.time,
                 "site":log.site!,
-                "sightings": log.sightings!
+                "sightings": (log.sighting?.allObjects as![AppSighting]).map { String(describing: $0)}
             ]
-            
         }
-        
+        print(jsonCompatibleArray)
         self.http?.delegate = self
         self.http?.postJson(toUrl: self.userUpdateUrl, withBody:
             [ "firstName" : self.user.firstName ?? "Unknown",
@@ -164,7 +172,7 @@ class PopUpAddDiveViewController: UIViewController, UIPickerViewDelegate, UIPick
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
                     let tabs = storyboard.instantiateViewController(withIdentifier: "tabs")
                     
-                    (UIApplication.shared.delegate as! AppDelegate).navigationController?.pushViewController(tabs, animated: true)
+                    self.appDelegate.navigationController?.pushViewController(tabs, animated: true)
                     tabs.view.removeFromSuperview();
                 }
                 self.view.removeFromSuperview()
@@ -191,8 +199,10 @@ class PopUpAddDiveViewController: UIViewController, UIPickerViewDelegate, UIPick
     }
     
     func didReceiveData(data: Any) {
-        if let response = data as? Dictionary<String,Any> {
-            print(response)
+        if data is Dictionary<String,Any> {
+            DispatchQueue.main.async {
+                self.removeAnimate()
+            }
         }
     }
     func didReceiveError(error: HttpError) {
