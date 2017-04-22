@@ -22,6 +22,9 @@ class PopUpAddDiveViewController: UIViewController, UIPickerViewDelegate, UIPick
         get {
             return self.dataService.getUser()
         }
+        set(updatedUser){
+            self.user = updatedUser
+        }
     }
 
     var newLog: Log = Log()
@@ -97,18 +100,7 @@ class PopUpAddDiveViewController: UIViewController, UIPickerViewDelegate, UIPick
     }
     
     func updateUser(){
-        
-        let diveLogJSON = self.user.log!.allObjects as! [AppLog]
-        let jsonCompatibleArray = diveLogJSON.map { log in
-            return [
-                "location":log.location!,
-                "depth":log.depth,
-                "time":log.time,
-                "site":log.site!,
-                "sightings": (log.sighting?.allObjects as![AppSighting]).map { String(describing: $0)}
-            ]
-        }
-        print(jsonCompatibleArray)
+        var jsonCompatibleArray = self.dataService.getUserLogs()
         self.http?.delegate = self
         self.http?.postJson(toUrl: self.userUpdateUrl, withBody:
             [ "firstName" : self.user.firstName ?? "Unknown",
@@ -118,7 +110,8 @@ class PopUpAddDiveViewController: UIViewController, UIPickerViewDelegate, UIPick
               "description": self.user.userDescription ?? "Open Water Diver",
               "username": self.user.username!,
               "id": self.user.id!,
-              "logs": jsonCompatibleArray], andHeaders: ["authorization": UserDefaults.standard.value(forKey: "token") as! String])
+              "logs": jsonCompatibleArray ],
+        andHeaders: ["authorization": UserDefaults.standard.value(forKey: "token") as! String])
     }
     
     public func numberOfComponents(in pickerView: UIPickerView) -> Int{
@@ -170,10 +163,10 @@ class PopUpAddDiveViewController: UIViewController, UIPickerViewDelegate, UIPick
             {
                 if self.hasChanges == true {
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    let tabs = storyboard.instantiateViewController(withIdentifier: "tabs")
-                    
+                    let tabs = storyboard.instantiateViewController(withIdentifier: "tabs") as! TabViewController
+                    tabs.selectedIndex = 3
                     self.appDelegate.navigationController?.pushViewController(tabs, animated: true)
-                    tabs.view.removeFromSuperview();
+                    //tabs.view.removeFromSuperview()
                 }
                 self.view.removeFromSuperview()
             }
@@ -186,12 +179,6 @@ class PopUpAddDiveViewController: UIViewController, UIPickerViewDelegate, UIPick
         self.saveBtn.layer.cornerRadius = 10
         self.sightings.layer.cornerRadius = 10
         super.viewDidLoad()
-        // self.saveBtn.isUserInteractionEnabled = false
-        /* self.depth.delegate = self
-         self.textBox.delegate = self
-         self.duration.delegate = self
-         self.site.delegate = self*/
-        // Do any additional setup after loading the view.
     }
     
     override func didReceiveMemoryWarning() {
@@ -200,6 +187,7 @@ class PopUpAddDiveViewController: UIViewController, UIPickerViewDelegate, UIPick
     
     func didReceiveData(data: Any) {
         if data is Dictionary<String,Any> {
+            self.hasChanges = true
             DispatchQueue.main.async {
                 self.removeAnimate()
             }

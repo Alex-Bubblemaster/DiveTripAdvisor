@@ -521,7 +521,7 @@
         <!--My Logs-->
         <scene sceneID="FGe-bN-XvU">
             <objects>
-                <tableViewController id="fTW-Cz-yH8" customClass="MyLogsTableViewController" customModule="DiveTripAdvisor" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="mylogs" id="fTW-Cz-yH8" customClass="MyLogsTableViewController" customModule="DiveTripAdvisor" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="O7f-R1-q4P">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -541,7 +541,7 @@
                             <outlet property="delegate" destination="fTW-Cz-yH8" id="ACM-HJ-xgU"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="My Logs" selectedImage="Literature-30.png" id="EbO-xQ-GWV"/>
+                    <tabBarItem key="tabBarItem" title="My Logs" image="Literature-30.png" id="EbO-xQ-GWV"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J7F-o8-nd9" userLabel="First Responder" sceneMemberID="firstResponder"/>

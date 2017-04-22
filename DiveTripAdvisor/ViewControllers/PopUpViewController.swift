@@ -82,7 +82,7 @@ class PopUpViewController: UIViewController, HttpRequesterDelegate {
         if let response = data as? Dictionary<String,Any> {
             let loggedUser =  User(dictionary: response["user"] as! [String: Any])
             self.dataService.updateUserInfo(loggedUser: loggedUser)
-            hasChanges = true
+            self.hasChanges = true
             DispatchQueue.main.async {
                 self.removeAnimate()
             }
@@ -111,10 +111,11 @@ class PopUpViewController: UIViewController, HttpRequesterDelegate {
             {
                 if self.hasChanges == true {
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    let tabs = storyboard.instantiateViewController(withIdentifier: "tabs")
+                    let tabs = storyboard.instantiateViewController(withIdentifier: "tabs") 
                     
                     (UIApplication.shared.delegate as! AppDelegate).navigationController?.pushViewController(tabs, animated: true)
-                    tabs.view.removeFromSuperview();
+                    
+                    //tabs.view.removeFromSuperview();
                 }
                 self.view.removeFromSuperview()
             }
