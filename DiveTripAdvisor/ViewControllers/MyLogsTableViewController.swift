@@ -18,7 +18,7 @@ class MyLogsTableViewController: UITableViewController {
     }
     var userLogs: [AppLog] {
         get {
-            return self.dataService.getUser().log?.allObjects as! [AppLog]
+            return self.dataService.getUser().log!.allObjects as! [AppLog]
         }
     }
     

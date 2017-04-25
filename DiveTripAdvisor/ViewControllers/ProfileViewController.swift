@@ -50,7 +50,6 @@ class ProfileViewController : UIViewController, HttpRequesterDelegate {
     @IBOutlet weak var image: UIImageView!
     
     override func viewDidLoad() {
-        print(self.user)
         username.text = self.user.username
         let url = URL(string: self.user.imageUrl ?? "https://period4respiratorycase6.wikispaces.com/space/showlogo/1304984043/logo.gif" )
         let data = try? Data(contentsOf: url!)
@@ -85,6 +84,7 @@ class ProfileViewController : UIViewController, HttpRequesterDelegate {
                 DispatchQueue.main.async {
                     let popOverDiveVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "sbPopUpAddDive") as! PopUpAddDiveViewController
                     popOverDiveVC.locations = locations
+                    
                     self.addChildViewController(popOverDiveVC)
                     
                     popOverDiveVC.view.frame = self.view.frame

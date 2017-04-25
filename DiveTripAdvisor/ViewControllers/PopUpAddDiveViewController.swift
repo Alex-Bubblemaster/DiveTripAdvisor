@@ -12,6 +12,7 @@ class PopUpAddDiveViewController: UIViewController, UIPickerViewDelegate, UIPick
     
     var hasChanges: Bool = false
     var locations: [Location] = []
+    var selectedLocation: Location?
     
     var dataService : DataService {
         get {
@@ -22,11 +23,8 @@ class PopUpAddDiveViewController: UIViewController, UIPickerViewDelegate, UIPick
         get {
             return self.dataService.getUser()
         }
-        set(updatedUser){
-            self.user = updatedUser
-        }
     }
-
+    
     var newLog: Log = Log()
     
     var appDelegate: AppDelegate {
@@ -39,11 +37,13 @@ class PopUpAddDiveViewController: UIViewController, UIPickerViewDelegate, UIPick
             return "\(self.appDelegate.baseUrl)/updateUserInfo"
         }
     }
+    
     var locationsUpdateUrl: String {
         get {
             return "\(self.appDelegate.baseUrl)/locations/update"
         }
     }
+    
     var http: HttpRequester? {
         get {
             return self.appDelegate.http
@@ -67,12 +67,27 @@ class PopUpAddDiveViewController: UIViewController, UIPickerViewDelegate, UIPick
     @IBAction func saveDive(_ sender: UIButton) {
         createDive()
         updateUser()
-        // wait/async
-        
-        //update location
-        
-        // close popup
+        updateLocation()
     }
+    
+    func updateLocation(){
+        
+        let newLogAsJson = self.newLog.logAsJSONcompatible()
+        var locationLogs = self.selectedLocation!.logsToJsonCompatible()
+        locationLogs.append(newLogAsJson)
+        self.http?.delegate = self
+        self.http?.postJson(toUrl: self.locationsUpdateUrl, withBody:
+            [ "_id" : self.selectedLocation?.id! as Any,
+              "name" : self.selectedLocation?.name ?? "Unknown",
+              "latitude": self.selectedLocation?.latitude! ?? 0,
+              "longitude": self.selectedLocation?.longitude! ?? 0,
+              "sites": self.selectedLocation?.sites ?? [["name": "Unknown"]],
+              "imageUrls": self.selectedLocation?.imageUrls ?? ["https://img.rezdy.com/PRODUCT_IMAGE/29234/lion%20fish_med.jpg"],
+              "logs": locationLogs ],
+                            andHeaders: ["authorization": UserDefaults.standard.value(forKey: "token") as! String])
+    }
+    
+    
     
     func createDive(){
         if addDiveFormIsValid() {
@@ -100,7 +115,8 @@ class PopUpAddDiveViewController: UIViewController, UIPickerViewDelegate, UIPick
     }
     
     func updateUser(){
-        var jsonCompatibleArray = self.dataService.getUserLogs()
+        let jsonCompatibleArray = self.dataService.getUserLogs()
+        
         self.http?.delegate = self
         self.http?.postJson(toUrl: self.userUpdateUrl, withBody:
             [ "firstName" : self.user.firstName ?? "Unknown",
@@ -111,7 +127,7 @@ class PopUpAddDiveViewController: UIViewController, UIPickerViewDelegate, UIPick
               "username": self.user.username!,
               "id": self.user.id!,
               "logs": jsonCompatibleArray ],
-        andHeaders: ["authorization": UserDefaults.standard.value(forKey: "token") as! String])
+                            andHeaders: ["authorization": UserDefaults.standard.value(forKey: "token") as! String])
     }
     
     public func numberOfComponents(in pickerView: UIPickerView) -> Int{
@@ -134,6 +150,7 @@ class PopUpAddDiveViewController: UIViewController, UIPickerViewDelegate, UIPick
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         self.textBox.text = self.locations[row].name
+        self.selectedLocation = self.locations[row]
         self.dropDown.isHidden = true
     }
     
@@ -186,13 +203,12 @@ class PopUpAddDiveViewController: UIViewController, UIPickerViewDelegate, UIPick
     }
     
     func didReceiveData(data: Any) {
-        if data is Dictionary<String,Any> {
-            self.hasChanges = true
+        print(data)
             DispatchQueue.main.async {
                 self.removeAnimate()
             }
-        }
     }
+    
     func didReceiveError(error: HttpError) {
         print(error)
     }

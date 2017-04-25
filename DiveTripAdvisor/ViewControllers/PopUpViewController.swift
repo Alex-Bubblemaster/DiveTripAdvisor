@@ -34,6 +34,7 @@ class PopUpViewController: UIViewController, HttpRequesterDelegate {
             return appDelegate.http
         }
     }
+    
     var hasChanges: Bool = false
     override func viewDidLoad() {
         cancel.layer.cornerRadius = 10
@@ -54,18 +55,7 @@ class PopUpViewController: UIViewController, HttpRequesterDelegate {
     @IBOutlet weak var cancel: UIButton!
     @IBOutlet weak var save: UIButton!
     @IBAction func update(_ sender: UIButton) {
-        var userLogs : [[String:Any]] = []
-        let diveLogsToMap = self.user.log!.allObjects as! [AppLog]
-        for log in diveLogsToMap {
-            userLogs.append([
-                "location":log.location!,
-                "depth":log.depth,
-                "time":log.time,
-                "site":log.site!,
-                "sightings": (log.sighting?.allObjects as![AppSighting]).map { String(describing: $0)}
-                ])
-        }
-        
+        let userLogs : [[String:Any]] = self.dataService.getUserLogs()
         self.http?.delegate = self
         self.http?.postJson(toUrl: self.url, withBody:
             ["username": self.user.username!,

@@ -43,4 +43,18 @@ class Log {
         self.sightings = sightings
         self.site = site
     }
+    
+    func logAsJSONcompatible() -> [String:Any] {
+        var sightingsJson: [String] = []
+        for sighting in self.sightings! {
+            sightingsJson.append(sighting)
+        }
+        return [
+            "location": self.location ?? "Unknown",
+            "depth":self.depth ?? 0,
+            "time":self.time ?? 0,
+            "site":self.site ?? "Unknown",
+            "sightings": sightingsJson
+        ]
+    }
 }
