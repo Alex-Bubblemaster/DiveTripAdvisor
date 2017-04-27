@@ -34,9 +34,9 @@ class ViewController: UIViewController, HttpRequesterDelegate {
         }
     }
     
-    var dataService : DataService {
-        get{
-            return DataService()
+    var dataService: DataService {
+        get {
+            return self.appDelegate.dataService
         }
     }
     
@@ -55,12 +55,13 @@ class ViewController: UIViewController, HttpRequesterDelegate {
         
     func didReceiveData(data: Any) {
         if let response = data as? Dictionary<String,Any> {
-            let user =  User(dictionary: response["user"] as! [String: Any])
             
-            let token = response["token"] as! String
-            defaults.setValue(token, forKey: "token")
-            self.dataService.storeUser(loggedUser: user)
             DispatchQueue.main.async {
+                let user =  User(dictionary: response["user"] as! [String: Any])
+                
+                let token = response["token"] as! String
+                self.defaults.setValue(token, forKey: "token")
+                self.dataService.storeUser(loggedUser: user)
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let tabsVC = storyboard.instantiateViewController(withIdentifier: "tabs")
                 

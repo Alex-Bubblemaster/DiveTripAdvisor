@@ -12,18 +12,20 @@ class LogsTableViewController: UITableViewController, HttpRequesterDelegate {
     
     var locations: [Location] = []
     var logs: [Log] = []
-    
+    var appDelegate: AppDelegate {
+        get {
+            return (UIApplication.shared.delegate as! AppDelegate)
+        }
+    }
     var url: String {
         get{
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            return "\(appDelegate.baseUrl)/locations/read"
+            return "\(self.appDelegate.baseUrl)/locations/read"
         }
     }
     
     var http: HttpRequester? {
         get{
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            return appDelegate.http
+            return self.appDelegate.http
         }
     }
     
@@ -52,7 +54,7 @@ class LogsTableViewController: UITableViewController, HttpRequesterDelegate {
                 self.locations.forEach({ (location) in
                     if let logsArray = location.logs {
                         if logsArray.count > 0 {
-                            self.logs = logsArray
+                            self.logs.append(contentsOf: logsArray)
                         }
                     }
                 })

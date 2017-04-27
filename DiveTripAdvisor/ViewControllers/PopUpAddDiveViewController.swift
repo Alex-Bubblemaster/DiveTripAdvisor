@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class PopUpAddDiveViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, HttpRequesterDelegate {
     
@@ -14,9 +15,15 @@ class PopUpAddDiveViewController: UIViewController, UIPickerViewDelegate, UIPick
     var locations: [Location] = []
     var selectedLocation: Location?
     
+    var appDelegate: AppDelegate {
+        get {
+            return (UIApplication.shared.delegate as! AppDelegate)
+        }
+    }
+    
     var dataService : DataService {
         get {
-            return DataService()
+            return (self.appDelegate.dataService)
         }
     }
     var user: AppUser {
@@ -27,11 +34,6 @@ class PopUpAddDiveViewController: UIViewController, UIPickerViewDelegate, UIPick
     
     var newLog: Log = Log()
     
-    var appDelegate: AppDelegate {
-        get {
-            return UIApplication.shared.delegate as! AppDelegate
-        }
-    }
     var userUpdateUrl: String {
         get {
             return "\(self.appDelegate.baseUrl)/updateUserInfo"
@@ -50,6 +52,8 @@ class PopUpAddDiveViewController: UIViewController, UIPickerViewDelegate, UIPick
         }
     }
     
+    
+    
     @IBOutlet weak var sightings: UITextView!
     @IBOutlet weak var textBox: UITextField!
     @IBOutlet weak var dropDown: UIPickerView!
@@ -66,8 +70,8 @@ class PopUpAddDiveViewController: UIViewController, UIPickerViewDelegate, UIPick
     
     @IBAction func saveDive(_ sender: UIButton) {
         createDive()
-        updateUser()
-        updateLocation()
+       
+       
     }
     
     func updateLocation(){
@@ -99,8 +103,8 @@ class PopUpAddDiveViewController: UIViewController, UIPickerViewDelegate, UIPick
             self.newLog.time = Int(self.duration.text!)
             self.newLog.location = self.textBox.text!
             self.newLog.site = self.site.text!
-            
-            self.dataService.createLogForUser(loggedUser: self.user, newLog: newLog)
+            updateUser()
+            //self.dataService.createLogForUser(loggedUser: self.user, newLog: newLog)
         }
     }
     
@@ -115,7 +119,7 @@ class PopUpAddDiveViewController: UIViewController, UIPickerViewDelegate, UIPick
     }
     
     func updateUser(){
-        let jsonCompatibleArray = self.dataService.getUserLogs()
+        var jsonCompatibleArray = self.dataService.getUserLogs()
         
         self.http?.delegate = self
         self.http?.postJson(toUrl: self.userUpdateUrl, withBody:
@@ -126,8 +130,18 @@ class PopUpAddDiveViewController: UIViewController, UIPickerViewDelegate, UIPick
               "description": self.user.userDescription ?? "Open Water Diver",
               "username": self.user.username!,
               "id": self.user.id!,
-              "logs": jsonCompatibleArray ],
+              "logs": jsonCompatibleArray.append(self.newLog.logAsJSONcompatible()) ],
                             andHeaders: ["authorization": UserDefaults.standard.value(forKey: "token") as! String])
+        _ = User(dictionary: [ "firstName" : self.user.firstName ?? "Unknown",
+                                         "lastName" : self.user.lastName ?? "Unknown",
+                                         "email": self.user.email ?? "Unknown",
+                                         "imageUrl":self.user.imageUrl!,
+                                         "description": self.user.userDescription ?? "Open Water Diver",
+                                         "username": self.user.username!,
+                                         "id": self.user.id!,
+                                         "logs": jsonCompatibleArray.append(self.newLog.logAsJSONcompatible()) ])
+        updateLocation()
+       
     }
     
     public func numberOfComponents(in pickerView: UIPickerView) -> Int{
@@ -181,9 +195,9 @@ class PopUpAddDiveViewController: UIViewController, UIPickerViewDelegate, UIPick
                 if self.hasChanges == true {
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
                     let tabs = storyboard.instantiateViewController(withIdentifier: "tabs") as! TabViewController
+                    
                     tabs.selectedIndex = 3
                     self.appDelegate.navigationController?.pushViewController(tabs, animated: true)
-                    //tabs.view.removeFromSuperview()
                 }
                 self.view.removeFromSuperview()
             }
@@ -202,11 +216,15 @@ class PopUpAddDiveViewController: UIViewController, UIPickerViewDelegate, UIPick
         super.didReceiveMemoryWarning()
     }
     
-    func didReceiveData(data: Any) {
-        print(data)
+    func didReceiveData(data: [String:Any]) {
+        if let response = data as? Dictionary<String,Any> {
+            print(response)
             DispatchQueue.main.async {
-                self.removeAnimate()
+              self.removeAnimate()
             }
+            
+        }
+
     }
     
     func didReceiveError(error: HttpError) {

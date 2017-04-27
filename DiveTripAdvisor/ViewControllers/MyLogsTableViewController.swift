@@ -13,13 +13,29 @@ class MyLogsTableViewController: UITableViewController {
 
     var dataService : DataService {
         get {
-            return DataService()
+            return self.appDelegate.dataService
         }
     }
-    var userLogs: [AppLog] {
+    
+    var appDelegate: AppDelegate {
         get {
-            return self.dataService.getUser().log!.allObjects as! [AppLog]
+            return UIApplication.shared.delegate as! AppDelegate
         }
+    }
+    var userLogs: [Log] {
+        get {
+            let logsAsJson = self.dataService.getUserLogs()
+            var userLogs: [Log] = []
+            for log in logsAsJson {
+                userLogs.append(Log(dictionary: log))
+            }
+            return userLogs
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
     }
     
     override func viewDidLoad() {

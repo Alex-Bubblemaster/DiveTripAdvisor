@@ -11,7 +11,7 @@ import UIKit
 class PopUpViewController: UIViewController, HttpRequesterDelegate {
     var dataService : DataService {
         get {
-            return DataService()
+            return self.appDelegate.dataService
         }
     }
     
@@ -21,17 +21,21 @@ class PopUpViewController: UIViewController, HttpRequesterDelegate {
         }
     }
     
+    var appDelegate : AppDelegate {
+        get{
+            return (UIApplication.shared.delegate as! AppDelegate)
+        }
+    }
+    
     var url: String {
         get{
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            return "\(appDelegate.baseUrl)/updateUserInfo"
+            return "\(self.appDelegate.baseUrl)/updateUserInfo"
         }
     }
     
     var http: HttpRequester? {
         get{
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            return appDelegate.http
+            return self.appDelegate.http
         }
     }
     

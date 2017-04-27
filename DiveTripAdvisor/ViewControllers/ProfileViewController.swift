@@ -10,10 +10,15 @@ import UIKit
 import CoreData
 
 class ProfileViewController : UIViewController, HttpRequesterDelegate {
+    var appDelegate: AppDelegate {
+        get {
+            return (UIApplication.shared.delegate as! AppDelegate)
+        }
+    }
     
     var dataService : DataService {
         get {
-            return DataService()
+            return (self.appDelegate.dataService)
         }
     }
     var user: AppUser {
@@ -24,8 +29,7 @@ class ProfileViewController : UIViewController, HttpRequesterDelegate {
     
     var http: HttpRequester? {
         get {
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            return appDelegate.http
+            return self.appDelegate.http
         }
     }
     
