@@ -9,15 +9,22 @@
 import UIKit
 
 class PopUpViewController: UIViewController, HttpRequesterDelegate {
+    var userUpdateDelegate: UserSentDataDelegate? = nil
     var dataService : DataService {
         get {
             return self.appDelegate.dataService
         }
     }
+    var storedUserId: String {
+        get {
+            return UserDefaults.standard.value(forKey: "id") as! String
+        }
+    }
+    
     
     var user: AppUser {
         get {
-            return self.dataService.getUser()
+            return self.dataService.getUser(id: self.storedUserId)!
         }
     }
     
@@ -43,7 +50,6 @@ class PopUpViewController: UIViewController, HttpRequesterDelegate {
     override func viewDidLoad() {
         cancel.layer.cornerRadius = 10
         save.layer.cornerRadius = 10
-        
         imageUrl.text = self.user.imageUrl
         firstName.text = self.user.firstName
         lastName.text = self.user.lastName
@@ -58,33 +64,32 @@ class PopUpViewController: UIViewController, HttpRequesterDelegate {
     
     @IBOutlet weak var cancel: UIButton!
     @IBOutlet weak var save: UIButton!
+    
     @IBAction func update(_ sender: UIButton) {
         let userLogs : [[String:Any]] = self.dataService.getUserLogs()
+        let data = ["username": self.user.username!,
+                    "logs": userLogs,
+                    "id": self.user.id!,
+                    "email": self.user.email!,
+                    "firstName": firstName.text ?? "Unknown",
+                    "lastName" : lastName.text ?? "Unknown",
+                    "description": userDescription.text ?? "Diver",
+                    "imageUrl": imageUrl.text ?? "https://period4respiratorycase6.wikispaces.com/space/showlogo/1304984043/logo.gif"] as [String : Any]
+        
         self.http?.delegate = self
-        self.http?.postJson(toUrl: self.url, withBody:
-            ["username": self.user.username!,
-             "logs": userLogs,
-             "id": self.user.id!,
-             "email": self.user.email!,
-             "firstName": firstName.text!,
-             "lastName" : lastName.text!,
-             "description": userDescription.text!,
-             "imageUrl": imageUrl.text!], andHeaders: ["authorization": UserDefaults.standard.value(forKey: "token") as! String])
+        self.http?.postJson(toUrl: self.url, withBody: data, andHeaders: ["authorization": UserDefaults.standard.value(forKey: "token") as! String])
     }
     
     func didReceiveData(data: Any) {
         if let response = data as? Dictionary<String,Any> {
             let loggedUser =  User(dictionary: response["user"] as! [String: Any])
             self.dataService.updateUserInfo(loggedUser: loggedUser)
-            self.hasChanges = true
-            DispatchQueue.main.async {
-                self.removeAnimate()
+            
+            if self.userUpdateDelegate != nil {
+                self.userUpdateDelegate?.userDidEnterData()
             }
+            
         }
-    }
-    
-    @IBAction func closePopUp() {
-        self.removeAnimate()
     }
     
     func showAnimate(){
@@ -96,28 +101,9 @@ class PopUpViewController: UIViewController, HttpRequesterDelegate {
         });
     }
     
-    func removeAnimate(){
-        UIView.animate(withDuration: 0.25, animations: {
-            self.view.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
-            self.view.alpha = 0.0;
-        }, completion:{(finished : Bool)  in
-            if (finished)
-            {
-                if self.hasChanges == true {
-                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    let tabs = storyboard.instantiateViewController(withIdentifier: "tabs") 
-                    
-                    (UIApplication.shared.delegate as! AppDelegate).navigationController?.pushViewController(tabs, animated: true)
-                    
-                    //tabs.view.removeFromSuperview();
-                }
-                self.view.removeFromSuperview()
-            }
-        });
-    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
+    
+    
 }

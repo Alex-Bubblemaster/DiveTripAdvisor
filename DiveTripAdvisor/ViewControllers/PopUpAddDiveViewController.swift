@@ -14,7 +14,11 @@ class PopUpAddDiveViewController: UIViewController, UIPickerViewDelegate, UIPick
     var hasChanges: Bool = false
     var locations: [Location] = []
     var selectedLocation: Location?
-    
+    var storedUserId: String {
+        get {
+            return UserDefaults.standard.value(forKey: "id") as! String
+        }
+    }
     var appDelegate: AppDelegate {
         get {
             return (UIApplication.shared.delegate as! AppDelegate)
@@ -28,7 +32,7 @@ class PopUpAddDiveViewController: UIViewController, UIPickerViewDelegate, UIPick
     }
     var user: AppUser {
         get {
-            return self.dataService.getUser()
+            return self.dataService.getUser(id: storedUserId)!
         }
     }
     
@@ -70,8 +74,8 @@ class PopUpAddDiveViewController: UIViewController, UIPickerViewDelegate, UIPick
     
     @IBAction func saveDive(_ sender: UIButton) {
         createDive()
-       
-       
+        
+        
     }
     
     func updateLocation(){
@@ -133,15 +137,15 @@ class PopUpAddDiveViewController: UIViewController, UIPickerViewDelegate, UIPick
               "logs": jsonCompatibleArray.append(self.newLog.logAsJSONcompatible()) ],
                             andHeaders: ["authorization": UserDefaults.standard.value(forKey: "token") as! String])
         _ = User(dictionary: [ "firstName" : self.user.firstName ?? "Unknown",
-                                         "lastName" : self.user.lastName ?? "Unknown",
-                                         "email": self.user.email ?? "Unknown",
-                                         "imageUrl":self.user.imageUrl!,
-                                         "description": self.user.userDescription ?? "Open Water Diver",
-                                         "username": self.user.username!,
-                                         "id": self.user.id!,
-                                         "logs": jsonCompatibleArray.append(self.newLog.logAsJSONcompatible()) ])
+                               "lastName" : self.user.lastName ?? "Unknown",
+                               "email": self.user.email ?? "Unknown",
+                               "imageUrl":self.user.imageUrl!,
+                               "description": self.user.userDescription ?? "Open Water Diver",
+                               "username": self.user.username!,
+                               "id": self.user.id!,
+                               "logs": jsonCompatibleArray.append(self.newLog.logAsJSONcompatible()) ])
         updateLocation()
-       
+        
     }
     
     public func numberOfComponents(in pickerView: UIPickerView) -> Int{
@@ -217,14 +221,10 @@ class PopUpAddDiveViewController: UIViewController, UIPickerViewDelegate, UIPick
     }
     
     func didReceiveData(data: [String:Any]) {
-        if let response = data as? Dictionary<String,Any> {
-            print(response)
-            DispatchQueue.main.async {
-              self.removeAnimate()
-            }
-            
+        DispatchQueue.main.async {
+            self.removeAnimate()
         }
-
+        
     }
     
     func didReceiveError(error: HttpError) {

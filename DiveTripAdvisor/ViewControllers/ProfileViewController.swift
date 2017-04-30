@@ -9,7 +9,12 @@
 import UIKit
 import CoreData
 
-class ProfileViewController : UIViewController, HttpRequesterDelegate {
+class ProfileViewController : UIViewController, HttpRequesterDelegate, UserSentDataDelegate {
+    
+    func userDidEnterData() {
+        self.populateTextFields()
+    }
+    
     var appDelegate: AppDelegate {
         get {
             return (UIApplication.shared.delegate as! AppDelegate)
@@ -21,9 +26,17 @@ class ProfileViewController : UIViewController, HttpRequesterDelegate {
             return (self.appDelegate.dataService)
         }
     }
+    
+    var storedUserId: String {
+        get {
+            return UserDefaults.standard.value(forKey: "id") as! String
+        }
+    }
+    
+    
     var user: AppUser {
         get {
-            return self.dataService.getUser()
+            return self.dataService.getUser(id: storedUserId)!
         }
     }
     
@@ -35,15 +48,11 @@ class ProfileViewController : UIViewController, HttpRequesterDelegate {
     
     var locationsUrl: String {
         get{
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            return "\(appDelegate.baseUrl)/locations/read"
+            return "\(self.appDelegate.baseUrl)/locations/read"
         }
     }
     
-    func loadLocations () {
-        self.http?.delegate = self
-        self.http?.get(fromUrl: self.locationsUrl)
-    }
+    var locations: [Location]? = nil
     
     @IBOutlet weak var addDiveBtn: UIButton!
     @IBOutlet weak var editBtn: UIButton!
@@ -54,6 +63,14 @@ class ProfileViewController : UIViewController, HttpRequesterDelegate {
     @IBOutlet weak var image: UIImageView!
     
     override func viewDidLoad() {
+        addDiveBtn.layer.cornerRadius = 10
+        editBtn.layer.cornerRadius = 10
+        self.populateTextFields()
+        self.loadLocations()
+        super.viewDidLoad()
+    }
+    
+    func populateTextFields(){
         username.text = self.user.username
         let url = URL(string: self.user.imageUrl ?? "https://period4respiratorycase6.wikispaces.com/space/showlogo/1304984043/logo.gif" )
         let data = try? Data(contentsOf: url!)
@@ -61,56 +78,33 @@ class ProfileViewController : UIViewController, HttpRequesterDelegate {
         firstName.text = self.user.firstName ?? "Unknown"
         lastName.text = self.user.lastName ?? "Unknown"
         userDescription.text = self.user.userDescription ?? "Diver"
-        addDiveBtn.layer.cornerRadius = 10
-        editBtn.layer.cornerRadius = 10
-        
-        super.viewDidLoad()
     }
     
-    @IBAction func addDive(_ sender: UIButton) {
-        loadLocations()
-    }
-    
-    @IBAction func edit() {
-        let popOverVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "sbPopUpID") as! PopUpViewController
-        self.addChildViewController(popOverVC)
-        
-        popOverVC.view.frame = self.view.frame
-        self.view.addSubview(popOverVC.view)
-        popOverVC.didMove(toParentViewController: self)
+    func loadLocations () {
+        self.http?.delegate = self
+        self.http?.get(fromUrl: self.locationsUrl)
     }
     
     func didReceiveData(data: Any) {
         if let array = data as? [String: Any] {
             if let dataArray = array["data"] as? [Dictionary<String, Any>] {
-                let locations = dataArray.map(){Location(dictionary: $0)}
+                self.locations = dataArray.map(){Location(dictionary: $0)}
                     .filter{$0.name != ""}
-                DispatchQueue.main.async {
-                    let popOverDiveVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "sbPopUpAddDive") as! PopUpAddDiveViewController
-                    popOverDiveVC.locations = locations
-                    
-                    self.addChildViewController(popOverDiveVC)
-                    
-                    popOverDiveVC.view.frame = self.view.frame
-                    self.view.addSubview(popOverDiveVC.view)
-                    popOverDiveVC.didMove(toParentViewController: self)
-                }
             }
         }
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print(segue.identifier!)
+        if segue.identifier == "editPopup" {
+            let sendingVC: PopUpViewController = segue.destination as! PopUpViewController
+            sendingVC.userUpdateDelegate = self
+        }
+    }
+    
 }

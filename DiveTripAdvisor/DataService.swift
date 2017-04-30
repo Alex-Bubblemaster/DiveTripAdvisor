@@ -23,9 +23,19 @@ class DataService {
         }
     }
     
+    var storedUserId: String? {
+        get {
+            return UserDefaults.standard.value(forKey: "id") as? String
+        }
+    }
+    
+    let defaults = UserDefaults.standard
+    
     func getUserLogs() -> [[String: Any]]{
-        let updatedUser = self.getUser()
-        let diveLogJSON = updatedUser.log!.allObjects as! [AppLog]
+        let userId = defaults.value(forKey: "id") as! String
+        print(userId)
+        let updatedUser = self.getUser(id: userId)
+        let diveLogJSON = updatedUser?.log!.allObjects as! [AppLog]
         
         let jsonCompatibleArray = diveLogJSON.map { log -> [String : Any] in
             let sightingsInLog = log.sighting?.allObjects as! [AppSighting]
@@ -57,7 +67,6 @@ class DataService {
             let users = try self.context.fetch(request)
             if users.count > 0 {
                 for user in users as! [AppUser]{
-                    if(user.id == loggedUser.id){
                         newAppLog.depth = Int16(newLog.depth!)
                         newAppLog.time = Int16(newLog.time!)
                         newAppLog.location = newLog.location
@@ -75,7 +84,6 @@ class DataService {
                             newAppLog.addToSighting(newSighting)
                         }
                         try self.context.save()
-                    }
                 }
             }
         } catch {
@@ -91,7 +99,6 @@ class DataService {
             let users = try self.context.fetch(request)
             if users.count > 0 {
                 for user in users as! [AppUser]{
-                    if(user.id == loggedUser.id){
                         user.email = loggedUser.email
                         user.lastName = loggedUser.lastName
                         user.userDescription = loggedUser.userDescription
@@ -100,7 +107,6 @@ class DataService {
                         user.username = loggedUser.username
                         
                         try self.context.save()
-                    }
                 }
             }
             
@@ -109,20 +115,28 @@ class DataService {
         }
     }
     
-    func getUser() -> AppUser {
+    func getUser(id: String) -> AppUser? {
         let userFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "AppUser")
         userFetch.includesSubentities = true
         userFetch.returnsObjectsAsFaults = false
         do {
             let fetchedPerson = try self.context.fetch(userFetch)
-            return fetchedPerson[0] as! AppUser
+            if fetchedPerson.count > 0 {
+                let loggedUser = fetchedPerson.filter({ ($0 as! AppUser).id == id })
+                if loggedUser.count > 0 {
+                    return loggedUser[0] as? AppUser
+                }
+            }
+            
         } catch {
         }
-        
-        return AppUser()
+        return nil
     }
     
     func storeUser(loggedUser: User){
+        if self.getUser(id: (self.storedUserId)!) != nil{
+            return
+        }
         
         let appUserEntity = NSEntityDescription.entity(forEntityName: "AppUser", in:  self.context)
         let newUser: AppUser = AppUser(entity: appUserEntity!, insertInto: self.context)

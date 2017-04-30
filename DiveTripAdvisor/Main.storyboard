@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="bZ5-ms-ugD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="bZ5-ms-ugD">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -101,10 +101,10 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="EIp-Pg-ZVD" kind="relationship" relationship="viewControllers" id="hnm-yG-IaR"/>
-                        <segue destination="khB-gb-PGd" kind="relationship" relationship="viewControllers" id="qXo-MA-4sl"/>
-                        <segue destination="A19-5W-sjF" kind="relationship" relationship="viewControllers" id="QNn-Zh-tcV"/>
+                        <segue destination="EIp-Pg-ZVD" kind="relationship" relationship="viewControllers" id="yPI-tl-sOr"/>
                         <segue destination="fTW-Cz-yH8" kind="relationship" relationship="viewControllers" id="MWB-fe-yk3"/>
+                        <segue destination="A19-5W-sjF" kind="relationship" relationship="viewControllers" id="QNn-Zh-tcV"/>
+                        <segue destination="khB-gb-PGd" kind="relationship" relationship="viewControllers" id="qXo-MA-4sl"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DEz-xW-ZdK" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -177,7 +177,7 @@
                                     <color key="titleShadowColor" red="0.58760102290000005" green="0.64507477290000004" blue="0.99698247350000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="edit" destination="EIp-Pg-ZVD" eventType="touchUpInside" id="DeQ-ku-Enl"/>
+                                    <segue destination="8h5-cK-9e3" kind="show" identifier="editPopup" id="vEd-9M-OXc"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ufA-JA-Lvh">
@@ -188,7 +188,7 @@
                                     <color key="titleShadowColor" red="0.58760102290000005" green="0.64507477290000004" blue="0.99698247350000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="addDive:" destination="EIp-Pg-ZVD" eventType="touchUpInside" id="qC6-bm-Z61"/>
+                                    <segue destination="OGt-23-Itv" kind="show" identifier="addDivePopup" id="I3l-cB-5mA"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oKZ-fC-UXP">
@@ -201,7 +201,8 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Profile" image="Scuba Mask-30.png" id="eFp-ri-0Lo"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="Scuba Mask-30.png" id="2tw-S8-yjq"/>
+                    <navigationItem key="navigationItem" id="8fP-Zd-07M"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="addDiveBtn" destination="ufA-JA-Lvh" id="vGr-gy-eJU"/>
@@ -215,7 +216,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fwh-hv-B9X" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2623.1999999999998" y="-1085.3073463268368"/>
+            <point key="canvasLocation" x="-1578.4000000000001" y="-956.67166416791611"/>
         </scene>
         <!--Pop Up View Controller-->
         <scene sceneID="VQ2-gd-sDf">
@@ -273,7 +274,8 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="update:" destination="8h5-cK-9e3" eventType="touchUpInside" id="KKQ-g6-fqs"/>
+                                    <action selector="update:" destination="8h5-cK-9e3" eventType="touchUpInside" id="7UP-Np-xcA"/>
+                                    <segue destination="ybv-rK-RPB" kind="show" id="mhn-GV-8Zw"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EM3-Aa-5qx">
@@ -284,7 +286,7 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="closePopUp" destination="8h5-cK-9e3" eventType="touchUpInside" id="Xfp-vb-bcD"/>
+                                    <segue destination="ybv-rK-RPB" kind="show" id="CRk-tP-eCa"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ME0-7x-q4a">
@@ -319,7 +321,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <outlet property="cancel" destination="EM3-Aa-5qx" id="B79-iu-eh4"/>
+                        <outlet property="cancel" destination="EM3-Aa-5qx" id="xqc-3r-bfC"/>
                         <outlet property="firstName" destination="ME0-7x-q4a" id="bWN-IZ-Ca2"/>
                         <outlet property="imageUrl" destination="tTO-Vp-Fgf" id="SSY-TQ-Eeo"/>
                         <outlet property="lastName" destination="3CV-Kn-xLr" id="WKL-7z-Z1y"/>
@@ -329,7 +331,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vu4-Qi-qbu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1983.2" y="-1086.2068965517242"/>
+            <point key="canvasLocation" x="-2535" y="-1884"/>
         </scene>
         <!--Pop Up Add Dive View Controller-->
         <scene sceneID="VZg-uD-QOm">
@@ -487,7 +489,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kJm-PL-Bdp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1340" y="-1088.0059970014993"/>
+            <point key="canvasLocation" x="-199.19999999999999" y="-1101.4992503748126"/>
         </scene>
         <!--Logs-->
         <scene sceneID="0JE-1A-vl8">
@@ -607,4 +609,7 @@
         <image name="Marker-30.png" width="30" height="30"/>
         <image name="Scuba Mask-30.png" width="30" height="30"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="mhn-GV-8Zw"/>
+    </inferredMetricsTieBreakers>
 </document>

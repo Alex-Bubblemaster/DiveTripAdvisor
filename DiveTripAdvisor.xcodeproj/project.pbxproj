@@ -32,6 +32,7 @@
 		999045E01E9AC6C000AB52EF /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999045DF1E9AC6C000AB52EF /* TabViewController.swift */; };
 		99A702141E9931170028E942 /* LogsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A702121E9931170028E942 /* LogsTableViewController.swift */; };
 		99A702171E994F730028E942 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A702161E994F730028E942 /* Location.swift */; };
+		99C1933E1EB5DB6200956400 /* UserSentDataDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C1933D1EB5DB6200956400 /* UserSentDataDelegate.swift */; };
 		99ED2FC21EA68B4B00C7981B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 99ED2FC11EA68B4B00C7981B /* Assets.xcassets */; };
 		99ED2FC41EA68BA600C7981B /* Literature-30.png in Resources */ = {isa = PBXBuildFile; fileRef = 99ED2FC31EA68BA600C7981B /* Literature-30.png */; };
 		99ED2FC61EA68C3500C7981B /* MyLogsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99ED2FC51EA68C3500C7981B /* MyLogsTableViewController.swift */; };
@@ -86,6 +87,7 @@
 		999045DF1E9AC6C000AB52EF /* TabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TabViewController.swift; path = ViewControllers/TabViewController.swift; sourceTree = "<group>"; };
 		99A702121E9931170028E942 /* LogsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogsTableViewController.swift; sourceTree = "<group>"; };
 		99A702161E994F730028E942 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		99C1933D1EB5DB6200956400 /* UserSentDataDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSentDataDelegate.swift; sourceTree = "<group>"; };
 		99ED2FC11EA68B4B00C7981B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		99ED2FC31EA68BA600C7981B /* Literature-30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Literature-30.png"; path = "Assets.xcassets/Literature-30.png"; sourceTree = "<group>"; };
 		99ED2FC51EA68C3500C7981B /* MyLogsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyLogsTableViewController.swift; path = ViewControllers/MyLogsTableViewController.swift; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 			isa = PBXGroup;
 			children = (
 				997F97921EA0BD9E00D21F9E /* DataService.swift */,
+				99C1933D1EB5DB6200956400 /* UserSentDataDelegate.swift */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -384,6 +387,7 @@
 				9947F3D81E8D4088005D7000 /* Log.swift in Sources */,
 				9947F3AA1E8D053E005D7000 /* DiveTripAdvisor.xcdatamodeld in Sources */,
 				999045E01E9AC6C000AB52EF /* TabViewController.swift in Sources */,
+				99C1933E1EB5DB6200956400 /* UserSentDataDelegate.swift in Sources */,
 				9947F3DF1E8D7B89005D7000 /* HttpRequesterDelegate.swift in Sources */,
 				99A702171E994F730028E942 /* Location.swift in Sources */,
 				999045DA1E9A55AD00AB52EF /* ProfileViewController.swift in Sources */,
@@ -481,7 +485,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -525,7 +529,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
