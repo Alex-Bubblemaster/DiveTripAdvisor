@@ -100,9 +100,14 @@ class ProfileViewController : UIViewController, HttpRequesterDelegate, UserSentD
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print(segue.identifier!)
         if segue.identifier == "editPopup" {
             let sendingVC: PopUpViewController = segue.destination as! PopUpViewController
+            sendingVC.userUpdateDelegate = self
+        }
+        
+        if segue.identifier == "addDivePopup" && (self.locations?.count)! > 0 {
+            let sendingVC: PopUpAddDiveViewController = segue.destination as! PopUpAddDiveViewController
+            sendingVC.locations = self.locations!
             sendingVC.userUpdateDelegate = self
         }
     }

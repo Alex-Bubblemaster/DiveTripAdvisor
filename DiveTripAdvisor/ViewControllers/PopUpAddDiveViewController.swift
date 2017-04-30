@@ -11,7 +11,7 @@ import CoreData
 
 class PopUpAddDiveViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, HttpRequesterDelegate {
     
-    var hasChanges: Bool = false
+    var userUpdateDelegate: UserSentDataDelegate? = nil
     var locations: [Location] = []
     var selectedLocation: Location?
     var storedUserId: String {
@@ -56,6 +56,8 @@ class PopUpAddDiveViewController: UIViewController, UIPickerViewDelegate, UIPick
         }
     }
     
+    var didReceiveUserUpdate:Bool = false
+    var didReceiveLocationUpdate:Bool = false
     
     
     @IBOutlet weak var sightings: UITextView!
@@ -67,15 +69,9 @@ class PopUpAddDiveViewController: UIViewController, UIPickerViewDelegate, UIPick
     
     @IBOutlet weak var saveBtn: UIButton!
     @IBOutlet weak var cancelBtn: UIButton!
-    @IBAction func cancelDive(_ sender: UIButton) {
-        // TODO: Check close popup
-        self.removeAnimate()
-    }
     
     @IBAction func saveDive(_ sender: UIButton) {
         createDive()
-        
-        
     }
     
     func updateLocation(){
@@ -83,6 +79,8 @@ class PopUpAddDiveViewController: UIViewController, UIPickerViewDelegate, UIPick
         let newLogAsJson = self.newLog.logAsJSONcompatible()
         var locationLogs = self.selectedLocation!.logsToJsonCompatible()
         locationLogs.append(newLogAsJson)
+        print("location logs")
+        print(locationLogs)
         self.http?.delegate = self
         self.http?.postJson(toUrl: self.locationsUpdateUrl, withBody:
             [ "_id" : self.selectedLocation?.id! as Any,
@@ -95,8 +93,6 @@ class PopUpAddDiveViewController: UIViewController, UIPickerViewDelegate, UIPick
                             andHeaders: ["authorization": UserDefaults.standard.value(forKey: "token") as! String])
     }
     
-    
-    
     func createDive(){
         if addDiveFormIsValid() {
             if let sightingsText = self.sightings.text {
@@ -108,22 +104,12 @@ class PopUpAddDiveViewController: UIViewController, UIPickerViewDelegate, UIPick
             self.newLog.location = self.textBox.text!
             self.newLog.site = self.site.text!
             updateUser()
-            //self.dataService.createLogForUser(loggedUser: self.user, newLog: newLog)
         }
-    }
-    
-    func addDiveFormIsValid() -> Bool{
-        if (self.depth.text?.characters.count)! > 0
-            && (self.duration.text?.characters.count)! > 0
-            && (self.textBox.text?.characters.count)! > 0
-            && (self.site.text?.characters.count)! > 0 {
-            return true
-        }
-        return false
     }
     
     func updateUser(){
         var jsonCompatibleArray = self.dataService.getUserLogs()
+        jsonCompatibleArray.append(self.newLog.logAsJSONcompatible())
         
         self.http?.delegate = self
         self.http?.postJson(toUrl: self.userUpdateUrl, withBody:
@@ -134,18 +120,19 @@ class PopUpAddDiveViewController: UIViewController, UIPickerViewDelegate, UIPick
               "description": self.user.userDescription ?? "Open Water Diver",
               "username": self.user.username!,
               "id": self.user.id!,
-              "logs": jsonCompatibleArray.append(self.newLog.logAsJSONcompatible()) ],
+              "logs": jsonCompatibleArray ],
                             andHeaders: ["authorization": UserDefaults.standard.value(forKey: "token") as! String])
-        _ = User(dictionary: [ "firstName" : self.user.firstName ?? "Unknown",
-                               "lastName" : self.user.lastName ?? "Unknown",
-                               "email": self.user.email ?? "Unknown",
-                               "imageUrl":self.user.imageUrl!,
-                               "description": self.user.userDescription ?? "Open Water Diver",
-                               "username": self.user.username!,
-                               "id": self.user.id!,
-                               "logs": jsonCompatibleArray.append(self.newLog.logAsJSONcompatible()) ])
-        updateLocation()
         
+    }
+    
+    func addDiveFormIsValid() -> Bool{
+        if (self.depth.text?.characters.count)! > 0
+            && (self.duration.text?.characters.count)! > 0
+            && (self.textBox.text?.characters.count)! > 0
+            && (self.site.text?.characters.count)! > 0 {
+            return true
+        }
+        return false
     }
     
     public func numberOfComponents(in pickerView: UIPickerView) -> Int{
@@ -189,25 +176,6 @@ class PopUpAddDiveViewController: UIViewController, UIPickerViewDelegate, UIPick
         });
     }
     
-    func removeAnimate(){
-        UIView.animate(withDuration: 0.25, animations: {
-            self.view.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
-            self.view.alpha = 0.0;
-        }, completion:{(finished : Bool)  in
-            if (finished)
-            {
-                if self.hasChanges == true {
-                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    let tabs = storyboard.instantiateViewController(withIdentifier: "tabs") as! TabViewController
-                    
-                    tabs.selectedIndex = 3
-                    self.appDelegate.navigationController?.pushViewController(tabs, animated: true)
-                }
-                self.view.removeFromSuperview()
-            }
-        });
-    }
-    
     
     override func viewDidLoad() {
         self.cancelBtn.layer.cornerRadius = 10
@@ -220,9 +188,21 @@ class PopUpAddDiveViewController: UIViewController, UIPickerViewDelegate, UIPick
         super.didReceiveMemoryWarning()
     }
     
-    func didReceiveData(data: [String:Any]) {
-        DispatchQueue.main.async {
-            self.removeAnimate()
+    func didReceiveData(data: Any) {
+        if let response = data as? Dictionary<String,Any> {
+            
+            if response["user"] != nil {
+                didReceiveUserUpdate = true
+                updateLocation()
+            }
+            
+            if response["location"] != nil {
+                didReceiveLocationUpdate = true
+            }
+        }
+        if self.userUpdateDelegate != nil && didReceiveUserUpdate == true && didReceiveLocationUpdate == true {
+            self.dataService.createLogForUser(loggedUser: self.user, newLog: newLog)
+            self.userUpdateDelegate?.userDidEnterData()
         }
         
     }

@@ -363,7 +363,7 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="cancelDive:" destination="OGt-23-Itv" eventType="touchUpInside" id="RTM-dE-6mF"/>
+                                    <segue destination="ybv-rK-RPB" kind="show" id="9US-VE-qcg"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ms3-Bp-Rv2">
@@ -375,6 +375,7 @@
                                 </state>
                                 <connections>
                                     <action selector="saveDive:" destination="OGt-23-Itv" eventType="touchUpInside" id="uTh-up-6f9"/>
+                                    <segue destination="ybv-rK-RPB" kind="show" id="zGe-Oc-vjJ"/>
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" clearsContextBeforeDrawing="NO" multipleTouchEnabled="YES" alpha="0.75" contentMode="scaleToFill" fixedFrame="YES" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="wou-9f-KFC">
@@ -477,7 +478,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <outlet property="cancelBtn" destination="tli-iR-pJM" id="ymF-hc-vyn"/>
+                        <outlet property="cancelBtn" destination="tli-iR-pJM" id="Ijy-6e-2cG"/>
                         <outlet property="depth" destination="g4k-4r-DZ9" id="708-jb-15b"/>
                         <outlet property="dropDown" destination="Bn1-S5-dUj" id="WLc-Xd-Bej"/>
                         <outlet property="duration" destination="eo6-LP-6nv" id="fPr-pI-73b"/>
@@ -518,7 +519,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ucT-xL-QI2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1431.2" y="-421.43928035982015"/>
+            <point key="canvasLocation" x="-1335" y="176"/>
         </scene>
         <!--My Logs-->
         <scene sceneID="FGe-bN-XvU">
@@ -610,6 +611,6 @@
         <image name="Scuba Mask-30.png" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="mhn-GV-8Zw"/>
+        <segue reference="zGe-Oc-vjJ"/>
     </inferredMetricsTieBreakers>
 </document>

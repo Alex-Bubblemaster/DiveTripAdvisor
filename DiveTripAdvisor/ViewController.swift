@@ -62,6 +62,7 @@ class ViewController: UIViewController, HttpRequesterDelegate {
                 self.defaults.setValue(token, forKey: "token")
                 self.defaults.setValue(user.id, forKey: "id")
                 self.dataService.storeUser(loggedUser: user)
+                
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let tabsVC = storyboard.instantiateViewController(withIdentifier: "tabs")
                 self.appDelegate.navigationController?.pushViewController(tabsVC, animated: true)

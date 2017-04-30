@@ -46,7 +46,6 @@ class PopUpViewController: UIViewController, HttpRequesterDelegate {
         }
     }
     
-    var hasChanges: Bool = false
     override func viewDidLoad() {
         cancel.layer.cornerRadius = 10
         save.layer.cornerRadius = 10
