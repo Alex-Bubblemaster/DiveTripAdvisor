@@ -104,7 +104,7 @@
                         <segue destination="EIp-Pg-ZVD" kind="relationship" relationship="viewControllers" id="yPI-tl-sOr"/>
                         <segue destination="fTW-Cz-yH8" kind="relationship" relationship="viewControllers" id="MWB-fe-yk3"/>
                         <segue destination="A19-5W-sjF" kind="relationship" relationship="viewControllers" id="QNn-Zh-tcV"/>
-                        <segue destination="khB-gb-PGd" kind="relationship" relationship="viewControllers" id="qXo-MA-4sl"/>
+                        <segue destination="clH-kX-10X" kind="relationship" relationship="viewControllers" id="qXo-MA-4sl"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DEz-xW-ZdK" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -519,7 +519,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ucT-xL-QI2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1335" y="176"/>
+            <point key="canvasLocation" x="-396" y="175.86206896551727"/>
         </scene>
         <!--My Logs-->
         <scene sceneID="FGe-bN-XvU">
@@ -574,11 +574,88 @@
                             <outlet property="delegate" destination="khB-gb-PGd" id="Mzn-fM-EPu"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Locations" image="Marker-30.png" id="JzJ-u9-oWV"/>
+                    <navigationItem key="navigationItem" title="Locations" id="bbu-eY-9th"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="86Z-OY-a58" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2404" y="220"/>
+            <point key="canvasLocation" x="-1464.8" y="219.94002998500753"/>
+        </scene>
+        <!--Location Detail View Controller-->
+        <scene sceneID="gXj-UQ-AWc">
+            <objects>
+                <viewController storyboardIdentifier="locationDetails" id="nA7-YS-I99" customClass="LocationDetailViewController" customModule="DiveTripAdvisor" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="yhu-6E-odW"/>
+                        <viewControllerLayoutGuide type="bottom" id="OtV-Z9-lHd"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="nFp-W8-O6l">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="va2-AB-Ab4">
+                                <rect key="frame" x="110" y="69" width="155" height="51"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d64-cw-Oph">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Back" id="G0y-AM-k4a"/>
+                                </items>
+                            </navigationBar>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uNz-vi-vi3">
+                                <rect key="frame" x="28" y="128" width="150" height="150"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Latitude" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bG4-FG-qmE">
+                                <rect key="frame" x="52" y="289" width="103" height="41"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Longitude" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hdc-IX-xGz">
+                                <rect key="frame" x="52" y="353" width="103" height="41"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Latitude" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="74j-eh-GIg">
+                                <rect key="frame" x="233" y="289" width="103" height="41"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Longitude" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2pc-7m-ieW">
+                                <rect key="frame" x="233" y="353" width="103" height="41"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v7i-zA-78V">
+                                <rect key="frame" x="209" y="128" width="150" height="150"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="imageOne" destination="uNz-vi-vi3" id="nK6-j2-YDF"/>
+                        <outlet property="imageTwo" destination="v7i-zA-78V" id="aKI-Jz-7ac"/>
+                        <outlet property="latitude" destination="74j-eh-GIg" id="r4N-CH-nSi"/>
+                        <outlet property="longitude" destination="2pc-7m-ieW" id="Y7V-rl-8SV"/>
+                        <outlet property="name" destination="va2-AB-Ab4" id="sjV-cf-76F"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qHW-dM-ieZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1465" y="993"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="JuI-0i-81h">
@@ -601,6 +678,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SiH-u7-Cl4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-4940" y="-699.40029985007504"/>
+        </scene>
+        <!--Locations-->
+        <scene sceneID="tbc-c6-sse">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="clH-kX-10X" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Locations" image="Marker-30.png" id="JzJ-u9-oWV"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="DnX-Z5-tXE">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="khB-gb-PGd" kind="relationship" relationship="rootViewController" id="qQT-nl-sYA"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="R3R-03-nNm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2404" y="219.94002998500753"/>
         </scene>
     </scenes>
     <resources>

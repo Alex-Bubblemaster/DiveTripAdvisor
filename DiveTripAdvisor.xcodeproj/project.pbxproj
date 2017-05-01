@@ -33,6 +33,7 @@
 		99A702141E9931170028E942 /* LogsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A702121E9931170028E942 /* LogsTableViewController.swift */; };
 		99A702171E994F730028E942 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A702161E994F730028E942 /* Location.swift */; };
 		99C1933E1EB5DB6200956400 /* UserSentDataDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C1933D1EB5DB6200956400 /* UserSentDataDelegate.swift */; };
+		99C193421EB7E1CD00956400 /* LocationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C193411EB7E1CD00956400 /* LocationDetailViewController.swift */; };
 		99ED2FC21EA68B4B00C7981B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 99ED2FC11EA68B4B00C7981B /* Assets.xcassets */; };
 		99ED2FC41EA68BA600C7981B /* Literature-30.png in Resources */ = {isa = PBXBuildFile; fileRef = 99ED2FC31EA68BA600C7981B /* Literature-30.png */; };
 		99ED2FC61EA68C3500C7981B /* MyLogsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99ED2FC51EA68C3500C7981B /* MyLogsTableViewController.swift */; };
@@ -88,6 +89,7 @@
 		99A702121E9931170028E942 /* LogsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogsTableViewController.swift; sourceTree = "<group>"; };
 		99A702161E994F730028E942 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		99C1933D1EB5DB6200956400 /* UserSentDataDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSentDataDelegate.swift; sourceTree = "<group>"; };
+		99C193411EB7E1CD00956400 /* LocationDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationDetailViewController.swift; path = ViewControllers/LocationDetailViewController.swift; sourceTree = "<group>"; };
 		99ED2FC11EA68B4B00C7981B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		99ED2FC31EA68BA600C7981B /* Literature-30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Literature-30.png"; path = "Assets.xcassets/Literature-30.png"; sourceTree = "<group>"; };
 		99ED2FC51EA68C3500C7981B /* MyLogsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyLogsTableViewController.swift; path = ViewControllers/MyLogsTableViewController.swift; sourceTree = "<group>"; };
@@ -232,6 +234,7 @@
 				9947F3A31E8D053E005D7000 /* ViewController.swift */,
 				99A702121E9931170028E942 /* LogsTableViewController.swift */,
 				999045CD1E99B0DA00AB52EF /* LocationsTableViewController.swift */,
+				99C193411EB7E1CD00956400 /* LocationDetailViewController.swift */,
 				999045D91E9A55AD00AB52EF /* ProfileViewController.swift */,
 				999045DF1E9AC6C000AB52EF /* TabViewController.swift */,
 				997F97941EA11F1400D21F9E /* PopUpAddDiveViewController.swift */,
@@ -385,6 +388,7 @@
 				997F97931EA0BD9E00D21F9E /* DataService.swift in Sources */,
 				9947F3A41E8D053E005D7000 /* ViewController.swift in Sources */,
 				9947F3D81E8D4088005D7000 /* Log.swift in Sources */,
+				99C193421EB7E1CD00956400 /* LocationDetailViewController.swift in Sources */,
 				9947F3AA1E8D053E005D7000 /* DiveTripAdvisor.xcdatamodeld in Sources */,
 				999045E01E9AC6C000AB52EF /* TabViewController.swift in Sources */,
 				99C1933E1EB5DB6200956400 /* UserSentDataDelegate.swift in Sources */,

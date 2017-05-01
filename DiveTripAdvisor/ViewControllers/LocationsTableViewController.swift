@@ -36,12 +36,6 @@ class LocationsTableViewController: UITableViewController, HttpRequesterDelegate
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "location-cell")
         
         self.loadLocations()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
     func didReceiveData(data: Any) {
@@ -56,11 +50,16 @@ class LocationsTableViewController: UITableViewController, HttpRequesterDelegate
             }
         }
     }
-
+    
+    func showDetails(of location: Location){
+        let locationDetailsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "locationDetails") as! LocationDetailViewController
+        locationDetailsVC.location = location
+        
+        self.navigationController?.show(locationDetailsVC, sender: self)
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     // MARK: - Table view data source
@@ -83,6 +82,10 @@ class LocationsTableViewController: UITableViewController, HttpRequesterDelegate
         // Configure the cell...
 
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.showDetails(of: self.locations[indexPath.row])
     }
     
 
