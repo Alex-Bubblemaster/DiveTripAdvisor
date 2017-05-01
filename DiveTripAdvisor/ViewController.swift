@@ -21,9 +21,15 @@ class ViewController: UIViewController, HttpRequesterDelegate {
         }
     }
     
-    var url: String {
+    var loginUrl: String {
         get{
             return "\(self.appDelegate.baseUrl)/authenticate"
+        }
+    }
+    
+    var registerUrl: String {
+        get{
+            return "\(self.appDelegate.baseUrl)/signup"
         }
     }
     
@@ -40,19 +46,14 @@ class ViewController: UIViewController, HttpRequesterDelegate {
         }
     }
     
-    func loginUser () {
-        self.http?.delegate = self
-        self.http?.postJson(toUrl: self.url, withBody: ["username": emailInput.text!, "password" : passwordInput.text!])
-    }
-    
     override func viewDidLoad() {
         loginButton.layer.cornerRadius = 10
         registerButton.layer.cornerRadius = 10
-
+        
         super.viewDidLoad()
     }
     
-        
+    
     func didReceiveData(data: Any) {
         if let response = data as? Dictionary<String,Any> {
             
@@ -67,31 +68,35 @@ class ViewController: UIViewController, HttpRequesterDelegate {
                 let tabsVC = storyboard.instantiateViewController(withIdentifier: "tabs")
                 self.appDelegate.navigationController?.pushViewController(tabsVC, animated: true)
             }
-            
         }
     }
     
     func didReceiveError(error: HttpError) {
         print(error)
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
+    
     @IBOutlet var emailInput: UITextField!
-
+    
     @IBOutlet var passwordInput: UITextField!
     @IBAction func login(_ sender: UIButton) {
-        
         if let _ = emailInput.text, let _ = passwordInput.text  {
-            loginUser()
-        }
+            self.http?.delegate = self
+            self.http?.postJson(toUrl: self.loginUrl, withBody: ["username": emailInput.text!, "password" : passwordInput.text!])        }
     }
     
     @IBAction func register(_ sender: UIButton) {
-        
-
+        if let _ = emailInput.text, let _ = passwordInput.text  {
+            self.http?.delegate = self
+            self.http?.postJson(toUrl: self.registerUrl,
+                              withBody: ["username": emailInput.text!,
+                                         "password" : passwordInput.text!,
+                                         "confirmPassword": passwordInput.text!,
+                                         "email": emailInput.text!])
+        }
     }
 }
 

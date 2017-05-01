@@ -79,8 +79,6 @@ class PopUpAddDiveViewController: UIViewController, UIPickerViewDelegate, UIPick
         let newLogAsJson = self.newLog.logAsJSONcompatible()
         var locationLogs = self.selectedLocation!.logsToJsonCompatible()
         locationLogs.append(newLogAsJson)
-        print("location logs")
-        print(locationLogs)
         self.http?.delegate = self
         self.http?.postJson(toUrl: self.locationsUpdateUrl, withBody:
             [ "_id" : self.selectedLocation?.id! as Any,

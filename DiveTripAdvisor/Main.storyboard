@@ -25,13 +25,6 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="uTD-1j-WL1">
-                                <rect key="frame" x="84" y="231" width="209" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
-                            </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" background="5245611577_781da01a65" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="5gv-EQ-KdK">
                                 <rect key="frame" x="84" y="293" width="209" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -73,6 +66,13 @@
                                     <action selector="register:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dzV-aR-cr2"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="uTD-1j-WL1">
+                                <rect key="frame" x="83" y="235" width="209" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.98589850551422198" green="1" blue="0.97055351171324533" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -611,6 +611,6 @@
         <image name="Scuba Mask-30.png" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="zGe-Oc-vjJ"/>
+        <segue reference="mhn-GV-8Zw"/>
     </inferredMetricsTieBreakers>
 </document>

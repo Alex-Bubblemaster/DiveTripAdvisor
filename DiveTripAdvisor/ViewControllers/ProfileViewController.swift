@@ -109,6 +109,7 @@ class ProfileViewController : UIViewController, HttpRequesterDelegate, UserSentD
             let sendingVC: PopUpAddDiveViewController = segue.destination as! PopUpAddDiveViewController
             sendingVC.locations = self.locations!
             sendingVC.userUpdateDelegate = self
+            
         }
     }
     

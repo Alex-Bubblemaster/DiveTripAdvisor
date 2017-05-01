@@ -33,7 +33,6 @@ class DataService {
     
     func getUserLogs() -> [[String: Any]]{
         let userId = defaults.value(forKey: "id") as! String
-        print(userId)
         let updatedUser = self.getUser(id: userId)
         let diveLogJSON = updatedUser?.log!.allObjects as! [AppLog]
         
@@ -51,7 +50,6 @@ class DataService {
                 "sightings": sightingsJson
             ]
         }
-        print(jsonCompatibleArray)
         return jsonCompatibleArray
     }
     
