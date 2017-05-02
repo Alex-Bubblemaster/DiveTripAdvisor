@@ -67,6 +67,7 @@ class ProfileViewController : UIViewController, HttpRequesterDelegate, UserSentD
         editBtn.layer.cornerRadius = 10
         self.populateTextFields()
         self.loadLocations()
+        self.image.layer.cornerRadius = 10
         super.viewDidLoad()
     }
     

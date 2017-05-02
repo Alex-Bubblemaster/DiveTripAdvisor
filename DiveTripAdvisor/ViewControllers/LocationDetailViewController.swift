@@ -60,6 +60,9 @@ class LocationDetailViewController: UIViewController {
         } else {
             self.imageTwo.image = UIImage(data: dataTwo!)
         }
+        
+        self.imageOne.layer.cornerRadius = 10
+        self.imageTwo.layer.cornerRadius = 10
     }
     
     /*
