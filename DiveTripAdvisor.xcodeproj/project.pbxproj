@@ -34,7 +34,6 @@
 		99A702171E994F730028E942 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A702161E994F730028E942 /* Location.swift */; };
 		99C1933E1EB5DB6200956400 /* UserSentDataDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C1933D1EB5DB6200956400 /* UserSentDataDelegate.swift */; };
 		99C193421EB7E1CD00956400 /* LocationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C193411EB7E1CD00956400 /* LocationDetailViewController.swift */; };
-		99ED2FC21EA68B4B00C7981B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 99ED2FC11EA68B4B00C7981B /* Assets.xcassets */; };
 		99ED2FC41EA68BA600C7981B /* Literature-30.png in Resources */ = {isa = PBXBuildFile; fileRef = 99ED2FC31EA68BA600C7981B /* Literature-30.png */; };
 		99ED2FC61EA68C3500C7981B /* MyLogsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99ED2FC51EA68C3500C7981B /* MyLogsTableViewController.swift */; };
 /* End PBXBuildFile section */
@@ -306,7 +305,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0820;
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "Alexandrina Hajigeorgieva";
 				TargetAttributes = {
 					9947F39D1E8D053D005D7000 = {
@@ -358,7 +357,6 @@
 				999045D61E9A385800AB52EF /* Scuba Mask-30.png in Resources */,
 				9913EAA11EA51CD400492252 /* Default-568h@2x.png in Resources */,
 				999045D21E9A354F00AB52EF /* Book Shelf-30.png in Resources */,
-				99ED2FC21EA68B4B00C7981B /* Assets.xcassets in Resources */,
 				999045D01E9A346900AB52EF /* Book Shelf-50.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

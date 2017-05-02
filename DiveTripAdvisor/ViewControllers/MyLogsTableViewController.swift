@@ -68,13 +68,16 @@ class MyLogsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "my-log-cell", for: indexPath)
-        cell.textLabel?.text = self.userLogs[indexPath.row].site 
-        
+        let cellIdentifier = "Cell"
+        var cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier)
+        if cell == nil {
+            cell = UITableViewCell(style: UITableViewCellStyle.value2, reuseIdentifier: cellIdentifier)
+        }
+        cell?.textLabel?.text = self.userLogs[indexPath.row].site
+       
+        cell?.detailTextLabel?.text = self.userLogs[indexPath.row].location
 
-        // Configure the cell...
-
-        return cell
+        return cell!
     }
 
     /*
