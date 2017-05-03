@@ -21,7 +21,6 @@ class LocationDetailViewController: UIViewController {
         self.name.text! = (self.location?.name)!
         self.longitude.text! = String(describing: (self.location?.longitude!)!)
         self.latitude.text! = String(describing: (self.location?.latitude!)!)
-        print(String(describing:self.location?.longitude!))
         self.loadImages()
         super.viewDidLoad()
         

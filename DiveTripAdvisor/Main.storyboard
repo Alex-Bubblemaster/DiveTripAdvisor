@@ -549,12 +549,34 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="PTa-s0-gU8">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="555"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="nAR-Xk-V72">
+                                    <rect key="frame" x="176.33333333333348" y="249" width="20" height="20"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </activityIndicatorView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Please be patient while we load the locations for the first time..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N60-h9-wFs">
+                                    <rect key="frame" x="79" y="277" width="214" height="112"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="17"/>
+                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
                         <connections>
                             <outlet property="dataSource" destination="khB-gb-PGd" id="qMF-I0-UoZ"/>
                             <outlet property="delegate" destination="khB-gb-PGd" id="Mzn-fM-EPu"/>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Locations" id="bbu-eY-9th"/>
+                    <connections>
+                        <outlet property="activityIndicator" destination="nAR-Xk-V72" id="jPf-R6-rN4"/>
+                        <outlet property="uitbView" destination="PTa-s0-gU8" id="LmJ-Y4-AuM"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="86Z-OY-a58" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

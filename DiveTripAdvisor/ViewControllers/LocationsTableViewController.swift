@@ -10,6 +10,9 @@ import UIKit
 
 class LocationsTableViewController: UITableViewController, HttpRequesterDelegate {
     
+    @IBOutlet weak var uitbView: UIView!
+   
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     var locations: [Location] = []
     
     var url: String {
@@ -27,6 +30,7 @@ class LocationsTableViewController: UITableViewController, HttpRequesterDelegate
     }
     
     func loadLocations () {
+        self.activityIndicator.startAnimating()
         self.http?.delegate = self
         self.http?.get(fromUrl: self.url)
     }
@@ -46,6 +50,9 @@ class LocationsTableViewController: UITableViewController, HttpRequesterDelegate
                 
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
+                    self.activityIndicator.stopAnimating()
+                    self.activityIndicator.hidesWhenStopped = true
+                    self.activityIndicator.isHidden = true
                 }
             }
         }
