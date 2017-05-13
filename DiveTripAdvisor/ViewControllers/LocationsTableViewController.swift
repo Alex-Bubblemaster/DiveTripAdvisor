@@ -92,6 +92,7 @@ class LocationsTableViewController: UITableViewController, HttpRequesterDelegate
         let imageUrl = NSURL(string: remoteImageUrlString )
         let defaultImage = UIImage(named: "location.jpg")
         
+      //  myCell.locationImageView?.frame =
         myCell.locationImageView?.sd_setImage(with: imageUrl! as URL, placeholderImage: defaultImage)
         myCell.locationLabel.text = self.locations[indexPath.row].name
         

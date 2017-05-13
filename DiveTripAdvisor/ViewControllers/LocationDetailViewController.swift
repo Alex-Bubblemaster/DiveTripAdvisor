@@ -38,13 +38,17 @@ class LocationDetailViewController: UIViewController {
                 var currUrl = ""
                 let result = imageUrlStr.range(of: "(?i)https?://(?:www\\.)?\\S+(?:/|\\b)", options: .regularExpression)
                 if result != nil {
+                    print(result!)
                     currUrl = imageUrlStr
-                }
-                let url = URL(string: currUrl)
-                let data = try? Data(contentsOf: url!)
-                let image = UIImage(data: data!)
-                if image != nil{
-                    images.append(image!)
+                    let url = URL(string: currUrl)
+                    let data = try? Data(contentsOf: url!)
+                    
+                    if data != nil {
+                        let image = UIImage(data: data!)
+                        if image != nil {
+                            images.append(image!)
+                        }
+                    }
                 }
             }
         }

@@ -13,6 +13,7 @@ class LocationCellTableViewCell: UITableViewCell {
     @IBOutlet weak var locationImageView: UIImageView!
     @IBOutlet weak var locationLabel: UILabel!
     override func awakeFromNib() {
+        
         super.awakeFromNib()
         // Initialization code
     }
