@@ -8,10 +8,11 @@
 
 import UIKit
 
+
 class LocationsTableViewController: UITableViewController, HttpRequesterDelegate {
     
     @IBOutlet weak var uitbView: UIView!
-   
+    
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     var locations: [Location] = []
     
@@ -36,11 +37,15 @@ class LocationsTableViewController: UITableViewController, HttpRequesterDelegate
     }
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "location-cell")
+        
+        // self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "location-cell")
         
         self.loadLocations()
+        super.viewDidLoad()
+        
     }
+    
+    
     
     func didReceiveData(data: Any) {
         if let array = data as? [String: Any] {
@@ -50,6 +55,7 @@ class LocationsTableViewController: UITableViewController, HttpRequesterDelegate
                 
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
+                    
                     self.activityIndicator.stopAnimating()
                     self.activityIndicator.hidesWhenStopped = true
                     self.activityIndicator.isHidden = true
@@ -61,8 +67,9 @@ class LocationsTableViewController: UITableViewController, HttpRequesterDelegate
     func showDetails(of location: Location){
         let locationDetailsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "locationDetails") as! LocationDetailViewController
         locationDetailsVC.location = location
-        
-        self.navigationController?.show(locationDetailsVC, sender: self)
+        DispatchQueue.main.async {
+            self.navigationController?.show(locationDetailsVC, sender: self)
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -72,39 +79,29 @@ class LocationsTableViewController: UITableViewController, HttpRequesterDelegate
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return self.locations.count
     }
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellIdentifier = "Cell"
-        var cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier)
-        if cell == nil {
-            cell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: cellIdentifier)
+        let myCell = tableView.dequeueReusableCell(withIdentifier: "location-cell", for: indexPath) as! LocationCellTableViewCell
+        
+        var remoteImageUrlString = "https://www.divetrip.com/tawali/turtlediver.jpg"
+        
+        if  (self.locations[indexPath.row].imageUrls?.count)! > 0 {
+            remoteImageUrlString = self.locations[indexPath.row].imageUrls![0]
         }
-        cell?.textLabel?.text = self.locations[indexPath.row].name
+        let imageUrl = NSURL(string: remoteImageUrlString )
+        let defaultImage = UIImage(named: "diveflag.jpg")
         
-        var urlOne = URL(string: "https://www.divetrip.com/tawali/turtlediver.jpg")
-        let urlOneDefault = URL(string:"https://www.divetrip.com/tawali/turtlediver.jpg")
+        myCell.locationImageView?.sd_setImage(with: imageUrl! as URL, placeholderImage: defaultImage)
+        myCell.locationLabel.text = self.locations[indexPath.row].name
         
-        if (self.locations[indexPath.row].imageUrls?.count)! > 0 {
-            urlOne = URL(string: (self.locations[indexPath.row].imageUrls?[0])!)
-        }
-        
-        let dataOne = try? Data(contentsOf: urlOne ?? urlOneDefault!)
-        if dataOne == nil{
-            cell?.imageView?.image = UIImage(data: try! Data(contentsOf: urlOneDefault!))
-        } else {
-            cell?.imageView?.image = UIImage(data: dataOne!)
-        }
-        
-        return cell!
+        return myCell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -143,3 +140,4 @@ class LocationsTableViewController: UITableViewController, HttpRequesterDelegate
      */
     
 }
+
