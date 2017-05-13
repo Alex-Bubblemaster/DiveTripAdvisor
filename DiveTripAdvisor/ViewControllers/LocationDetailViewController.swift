@@ -38,7 +38,6 @@ class LocationDetailViewController: UIViewController {
                 var currUrl = ""
                 let result = imageUrlStr.range(of: "(?i)https?://(?:www\\.)?\\S+(?:/|\\b)", options: .regularExpression)
                 if result != nil {
-                    print(result!)
                     currUrl = imageUrlStr
                     let url = URL(string: currUrl)
                     let data = try? Data(contentsOf: url!)
@@ -65,7 +64,7 @@ class LocationDetailViewController: UIViewController {
         self.imageOne.animationDuration = 5
         self.imageOne.startAnimating()
         
-        self.imageOne.layer.cornerRadius = 10
+        self.imageOne.layer.cornerRadius = 5
     }
     
     /*

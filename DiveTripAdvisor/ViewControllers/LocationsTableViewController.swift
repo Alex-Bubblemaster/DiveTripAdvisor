@@ -94,6 +94,7 @@ class LocationsTableViewController: UITableViewController, HttpRequesterDelegate
         
       //  myCell.locationImageView?.frame =
         myCell.locationImageView?.sd_setImage(with: imageUrl! as URL, placeholderImage: defaultImage)
+        myCell.locationImageView.layer.cornerRadius = 5
         myCell.locationLabel.text = self.locations[indexPath.row].name
         
         return myCell
