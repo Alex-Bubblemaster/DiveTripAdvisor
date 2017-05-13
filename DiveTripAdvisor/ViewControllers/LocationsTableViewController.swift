@@ -37,15 +37,9 @@ class LocationsTableViewController: UITableViewController, HttpRequesterDelegate
     }
     
     override func viewDidLoad() {
-        
-        // self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "location-cell")
-        
         self.loadLocations()
         super.viewDidLoad()
-        
     }
-    
-    
     
     func didReceiveData(data: Any) {
         if let array = data as? [String: Any] {
@@ -96,7 +90,7 @@ class LocationsTableViewController: UITableViewController, HttpRequesterDelegate
             remoteImageUrlString = self.locations[indexPath.row].imageUrls![0]
         }
         let imageUrl = NSURL(string: remoteImageUrlString )
-        let defaultImage = UIImage(named: "diveflag.jpg")
+        let defaultImage = UIImage(named: "location.jpg")
         
         myCell.locationImageView?.sd_setImage(with: imageUrl! as URL, placeholderImage: defaultImage)
         myCell.locationLabel.text = self.locations[indexPath.row].name

@@ -27,7 +27,7 @@
 		990449701EC5365000ED17C3 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 9904495A1EC5365000ED17C3 /* UIImageView+WebCache.m */; };
 		990449711EC5365000ED17C3 /* UIView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 9904495C1EC5365000ED17C3 /* UIView+WebCache.m */; };
 		990449721EC5365000ED17C3 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9904495E1EC5365000ED17C3 /* UIView+WebCacheOperation.m */; };
-		990449741EC5DA8800ED17C3 /* diveflag.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 990449731EC5DA8800ED17C3 /* diveflag.jpg */; };
+		990449741EC5DA8800ED17C3 /* location.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 990449731EC5DA8800ED17C3 /* location.jpg */; };
 		990449771EC5DE8200ED17C3 /* defaultDetailsLocationOne.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 990449751EC5DE8200ED17C3 /* defaultDetailsLocationOne.jpg */; };
 		990449781EC5DE8200ED17C3 /* defaultDetailsLocationTwo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 990449761EC5DE8200ED17C3 /* defaultDetailsLocationTwo.jpg */; };
 		9913EAA11EA51CD400492252 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9913EAA01EA51CD400492252 /* Default-568h@2x.png */; };
@@ -121,7 +121,7 @@
 		9904495C1EC5365000ED17C3 /* UIView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCache.m"; sourceTree = "<group>"; };
 		9904495D1EC5365000ED17C3 /* UIView+WebCacheOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WebCacheOperation.h"; sourceTree = "<group>"; };
 		9904495E1EC5365000ED17C3 /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
-		990449731EC5DA8800ED17C3 /* diveflag.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = diveflag.jpg; path = Assets.xcassets/diveflag.jpg; sourceTree = "<group>"; };
+		990449731EC5DA8800ED17C3 /* location.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = location.jpg; path = Assets.xcassets/location.jpg; sourceTree = "<group>"; };
 		990449751EC5DE8200ED17C3 /* defaultDetailsLocationOne.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = defaultDetailsLocationOne.jpg; path = Assets.xcassets/defaultDetailsLocationOne.jpg; sourceTree = "<group>"; };
 		990449761EC5DE8200ED17C3 /* defaultDetailsLocationTwo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = defaultDetailsLocationTwo.jpg; path = Assets.xcassets/defaultDetailsLocationTwo.jpg; sourceTree = "<group>"; };
 		9913EAA01EA51CD400492252 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -307,7 +307,7 @@
 			children = (
 				990449751EC5DE8200ED17C3 /* defaultDetailsLocationOne.jpg */,
 				990449761EC5DE8200ED17C3 /* defaultDetailsLocationTwo.jpg */,
-				990449731EC5DA8800ED17C3 /* diveflag.jpg */,
+				990449731EC5DA8800ED17C3 /* location.jpg */,
 				99ED2FC31EA68BA600C7981B /* Literature-30.png */,
 				99ED2FC11EA68B4B00C7981B /* Assets.xcassets */,
 				999045D51E9A385800AB52EF /* Scuba Mask-30.png */,
@@ -477,7 +477,7 @@
 				990449781EC5DE8200ED17C3 /* defaultDetailsLocationTwo.jpg in Resources */,
 				9947F3AF1E8D053E005D7000 /* LaunchScreen.storyboard in Resources */,
 				9947F3AC1E8D053E005D7000 /* Assets.xcassets in Resources */,
-				990449741EC5DA8800ED17C3 /* diveflag.jpg in Resources */,
+				990449741EC5DA8800ED17C3 /* location.jpg in Resources */,
 				999045D41E9A35FD00AB52EF /* Marker-30.png in Resources */,
 				990449771EC5DE8200ED17C3 /* defaultDetailsLocationOne.jpg in Resources */,
 				999045D61E9A385800AB52EF /* Scuba Mask-30.png in Resources */,
