@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 
 class LocationDetailViewController: UIViewController {
     
@@ -14,6 +15,7 @@ class LocationDetailViewController: UIViewController {
     
     @IBOutlet weak var name: UILabel!
     
+    @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var longitude: UILabel!
     @IBOutlet weak var latitude: UILabel!
     @IBOutlet weak var imageOne: UIImageView!
@@ -22,6 +24,9 @@ class LocationDetailViewController: UIViewController {
         self.longitude.text! = String(describing: (self.location?.longitude!)!)
         self.latitude.text! = String(describing: (self.location?.latitude!)!)
         self.loadImages()
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = CLLocationCoordinate2D(latitude: Double((self.location?.latitude)!), longitude: Double((self.location?.longitude)!))
+        self.map.addAnnotation(annotation)
         super.viewDidLoad()
         
     }
@@ -65,6 +70,14 @@ class LocationDetailViewController: UIViewController {
         self.imageOne.startAnimating()
         
         self.imageOne.layer.cornerRadius = 5
+        let coord = CLLocationCoordinate2DMake(Double((self.location?.latitude)!),Double((self.location?.longitude)!));
+        let region = MKCoordinateRegionMakeWithDistance(coord, 200000, 200000);
+        if (region.center.latitude >= -90) && (region.center.latitude <= 90) && (region.center.longitude >= -180) && (region.center.longitude <= 180){
+            self.map.setRegion(region, animated: true)
+            
+            self.map.layer.cornerRadius = 5
+            
+        }
     }
     
     /*
