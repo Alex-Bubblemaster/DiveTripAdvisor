@@ -31,6 +31,7 @@
 		990449771EC5DE8200ED17C3 /* defaultDetailsLocationOne.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 990449751EC5DE8200ED17C3 /* defaultDetailsLocationOne.jpg */; };
 		990449781EC5DE8200ED17C3 /* defaultDetailsLocationTwo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 990449761EC5DE8200ED17C3 /* defaultDetailsLocationTwo.jpg */; };
 		9904497A1EC7633A00ED17C3 /* LogsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990449791EC7633A00ED17C3 /* LogsTableViewCell.swift */; };
+		9904497C1EC83B6C00ED17C3 /* MyLogsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9904497B1EC83B6C00ED17C3 /* MyLogsTableViewCell.swift */; };
 		9913EAA11EA51CD400492252 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9913EAA01EA51CD400492252 /* Default-568h@2x.png */; };
 		993766C51EC4E5080017EB1C /* LocationCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993766C41EC4E5080017EB1C /* LocationCellTableViewCell.swift */; };
 		9947F3A21E8D053E005D7000 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9947F3A11E8D053D005D7000 /* AppDelegate.swift */; };
@@ -126,6 +127,7 @@
 		990449751EC5DE8200ED17C3 /* defaultDetailsLocationOne.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = defaultDetailsLocationOne.jpg; path = Assets.xcassets/defaultDetailsLocationOne.jpg; sourceTree = "<group>"; };
 		990449761EC5DE8200ED17C3 /* defaultDetailsLocationTwo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = defaultDetailsLocationTwo.jpg; path = Assets.xcassets/defaultDetailsLocationTwo.jpg; sourceTree = "<group>"; };
 		990449791EC7633A00ED17C3 /* LogsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LogsTableViewCell.swift; path = ViewControllers/LogsTableViewCell.swift; sourceTree = "<group>"; };
+		9904497B1EC83B6C00ED17C3 /* MyLogsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyLogsTableViewCell.swift; path = ViewControllers/MyLogsTableViewCell.swift; sourceTree = "<group>"; };
 		9913EAA01EA51CD400492252 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		993766C41EC4E5080017EB1C /* LocationCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationCellTableViewCell.swift; path = Models/LocationCellTableViewCell.swift; sourceTree = "<group>"; };
 		9947F39E1E8D053D005D7000 /* DiveTripAdvisor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiveTripAdvisor.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -355,6 +357,7 @@
 				999045DD1E9AA63F00AB52EF /* PopUpViewController.swift */,
 				9947F3A31E8D053E005D7000 /* ViewController.swift */,
 				99A702121E9931170028E942 /* LogsTableViewController.swift */,
+				990449791EC7633A00ED17C3 /* LogsTableViewCell.swift */,
 				999045CD1E99B0DA00AB52EF /* LocationsTableViewController.swift */,
 				993766C41EC4E5080017EB1C /* LocationCellTableViewCell.swift */,
 				99C193411EB7E1CD00956400 /* LocationDetailViewController.swift */,
@@ -362,7 +365,7 @@
 				999045DF1E9AC6C000AB52EF /* TabViewController.swift */,
 				997F97941EA11F1400D21F9E /* PopUpAddDiveViewController.swift */,
 				99ED2FC51EA68C3500C7981B /* MyLogsTableViewController.swift */,
-				990449791EC7633A00ED17C3 /* LogsTableViewCell.swift */,
+				9904497B1EC83B6C00ED17C3 /* MyLogsTableViewCell.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -522,6 +525,7 @@
 				990449611EC5365000ED17C3 /* NSData+ImageContentType.m in Sources */,
 				990449651EC5365000ED17C3 /* SDWebImageCompat.m in Sources */,
 				99C193421EB7E1CD00956400 /* LocationDetailViewController.swift in Sources */,
+				9904497C1EC83B6C00ED17C3 /* MyLogsTableViewCell.swift in Sources */,
 				9904496D1EC5365000ED17C3 /* UIImage+MultiFormat.m in Sources */,
 				9904496C1EC5365000ED17C3 /* UIImage+GIF.m in Sources */,
 				990449671EC5365000ED17C3 /* SDWebImageDownloader.m in Sources */,

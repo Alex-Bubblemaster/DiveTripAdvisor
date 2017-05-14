@@ -41,7 +41,7 @@ class MyLogsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "my-log-cell")
+       // self.tableView.register(LogsTableViewCell.self, forCellReuseIdentifier: "my-logs")
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -68,16 +68,14 @@ class MyLogsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellIdentifier = "Cell"
-        var cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier)
-        if cell == nil {
-            cell = UITableViewCell(style: UITableViewCellStyle.value2, reuseIdentifier: cellIdentifier)
-        }
-        cell?.textLabel?.text = self.userLogs[indexPath.row].site
-       
-        cell?.detailTextLabel?.text = self.userLogs[indexPath.row].location
+        let cell = tableView.dequeueReusableCell(withIdentifier: "my-logs", for: indexPath) as! MyLogsTableViewCell
+        cell.site?.text = self.userLogs[indexPath.row].site
+        cell.site?.layer.cornerRadius = 5
+        cell.depth?.text = String(self.userLogs[indexPath.row].depth!) + " m"
+        cell.time?.text = String(self.userLogs[indexPath.row].time!) + " mins"
+        cell.locationName?.text = self.userLogs[indexPath.row].location
 
-        return cell!
+        return cell
     }
 
     /*
