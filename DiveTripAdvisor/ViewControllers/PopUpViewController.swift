@@ -117,7 +117,6 @@ class PopUpViewController: UIViewController, HttpRequesterDelegate {
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        print(identifier)
         if formIsValid() {
             return true
         } else {
