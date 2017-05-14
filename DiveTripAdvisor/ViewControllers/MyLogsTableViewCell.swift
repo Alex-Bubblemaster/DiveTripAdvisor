@@ -10,6 +10,7 @@ import UIKit
 
 class MyLogsTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var sightings: UILabel!
     @IBOutlet weak var depth: UILabel!
     @IBOutlet weak var time: UILabel!
     @IBOutlet weak var locationName: UILabel!
