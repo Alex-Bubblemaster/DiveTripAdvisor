@@ -72,7 +72,15 @@ class ViewController: UIViewController, HttpRequesterDelegate {
     }
     
     func didReceiveError(error: HttpError) {
-        print(error)
+        DispatchQueue.main.async {
+            let errorMessage = String(describing: error).replacingOccurrences(of: "api(\"", with: "").replacingOccurrences(of: "\")", with: "")
+            
+            let uiAlert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: UIAlertControllerStyle.alert)
+           
+            uiAlert.addAction(UIAlertAction(title: "Ok", style: .default))
+            self.present(uiAlert, animated: true, completion: nil)
+            print(error)
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -92,11 +100,10 @@ class ViewController: UIViewController, HttpRequesterDelegate {
         if let _ = emailInput.text, let _ = passwordInput.text  {
             self.http?.delegate = self
             self.http?.postJson(toUrl: self.registerUrl,
-                              withBody: ["username": emailInput.text!,
-                                         "password" : passwordInput.text!,
-                                         "confirmPassword": passwordInput.text!,
-                                         "email": emailInput.text!])
+                                withBody: ["username": emailInput.text!,
+                                           "password" : passwordInput.text!,
+                                           "confirmPassword": passwordInput.text!,
+                                           "email": emailInput.text!])
         }
     }
 }
-

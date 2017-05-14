@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 class LocationsTableViewController: UITableViewController, HttpRequesterDelegate {
     
     @IBOutlet weak var uitbView: UIView!
@@ -80,7 +79,6 @@ class LocationsTableViewController: UITableViewController, HttpRequesterDelegate
         return self.locations.count
     }
     
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let myCell = tableView.dequeueReusableCell(withIdentifier: "location-cell", for: indexPath) as! LocationCellTableViewCell
         
@@ -104,7 +102,6 @@ class LocationsTableViewController: UITableViewController, HttpRequesterDelegate
         self.showDetails(of: self.locations[indexPath.row])
     }
     
-    
     /*
      // Override to support conditional editing of the table view.
      override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -124,16 +121,4 @@ class LocationsTableViewController: UITableViewController, HttpRequesterDelegate
      }
      }
      */
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
 }
-

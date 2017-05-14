@@ -29,12 +29,6 @@ class Location {
         self.sites = dictionary["sites"] as? [[String:Any]]
     }
     
-   /* init(id: String?, name: String?, logs: [Log]?) {
-        self.id = id
-        self.name=name
-        self.logs=logs
-    }*/
-    
     func parseLogs(logs :[[String: Any]]) -> [Log] {
         var locationLogs : [Log] = []
         for log in logs {
@@ -48,7 +42,5 @@ class Location {
         return self.logs!.map() {
             return $0.logAsJSONcompatible()
         }
-        
     }
-
 }

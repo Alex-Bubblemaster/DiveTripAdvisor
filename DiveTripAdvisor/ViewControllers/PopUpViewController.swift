@@ -103,6 +103,4 @@ class PopUpViewController: UIViewController, HttpRequesterDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
-    
 }
