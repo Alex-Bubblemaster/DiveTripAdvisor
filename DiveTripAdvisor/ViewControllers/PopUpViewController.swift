@@ -10,17 +10,18 @@ import UIKit
 
 class PopUpViewController: UIViewController, HttpRequesterDelegate {
     var userUpdateDelegate: UserSentDataDelegate? = nil
+    @IBOutlet weak var popupFrame: UILabel!
     var dataService : DataService {
         get {
             return self.appDelegate.dataService
         }
     }
+    
     var storedUserId: String {
         get {
             return UserDefaults.standard.value(forKey: "id") as! String
         }
     }
-    
     
     var user: AppUser {
         get {
@@ -65,18 +66,29 @@ class PopUpViewController: UIViewController, HttpRequesterDelegate {
     @IBOutlet weak var save: UIButton!
     
     @IBAction func update(_ sender: UIButton) {
-        let userLogs : [[String:Any]] = self.dataService.getUserLogs()
-        let data = ["username": self.user.username!,
-                    "logs": userLogs,
-                    "id": self.user.id!,
-                    "email": self.user.email!,
-                    "firstName": firstName.text ?? "Unknown",
-                    "lastName" : lastName.text ?? "Unknown",
-                    "description": userDescription.text ?? "Diver",
-                    "imageUrl": imageUrl.text ?? "https://period4respiratorycase6.wikispaces.com/space/showlogo/1304984043/logo.gif"] as [String : Any]
-        
-        self.http?.delegate = self
-        self.http?.postJson(toUrl: self.url, withBody: data, andHeaders: ["authorization": UserDefaults.standard.value(forKey: "token") as! String])
+        if(formIsValid()){
+            let userLogs : [[String:Any]] = self.dataService.getUserLogs()
+            let data = ["username": self.user.username!,
+                        "logs": userLogs,
+                        "id": self.user.id!,
+                        "email": self.user.email!,
+                        "firstName": firstName.text ?? "Unknown",
+                        "lastName" : lastName.text ?? "Unknown",
+                        "description": userDescription.text ?? "Diver",
+                        "imageUrl": imageUrl.text ?? "https://period4respiratorycase6.wikispaces.com/space/showlogo/1304984043/logo.gif"] as [String : Any]
+            
+            self.http?.delegate = self
+            self.http?.postJson(toUrl: self.url, withBody: data, andHeaders: ["authorization": UserDefaults.standard.value(forKey: "token") as! String])
+        }
+    }
+    
+    func formIsValid() -> Bool {
+        if self.firstName.text != "" &&
+            self.lastName.text != "" &&
+            self.imageUrl.text != "" {
+            return true
+        }
+        return false
     }
     
     func didReceiveData(data: Any) {
@@ -102,5 +114,21 @@ class PopUpViewController: UIViewController, HttpRequesterDelegate {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        print(identifier)
+        if formIsValid() {
+            return true
+        } else {
+            let errorMessage = "All fields are required"
+            
+            let uiAlert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: UIAlertControllerStyle.alert)
+            
+            uiAlert.addAction(UIAlertAction(title: "OK", style: .default))
+            self.view.window?.rootViewController?.present(uiAlert, animated: true, completion: nil)
+            
+            return false
+        }
     }
 }

@@ -275,7 +275,7 @@
                                 </state>
                                 <connections>
                                     <action selector="update:" destination="8h5-cK-9e3" eventType="touchUpInside" id="7UP-Np-xcA"/>
-                                    <segue destination="ybv-rK-RPB" kind="show" id="mhn-GV-8Zw"/>
+                                    <segue destination="ybv-rK-RPB" kind="show" identifier="save" id="mhn-GV-8Zw"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EM3-Aa-5qx">
@@ -286,7 +286,7 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="ybv-rK-RPB" kind="show" id="CRk-tP-eCa"/>
+                                    <segue destination="ybv-rK-RPB" kind="show" identifier="cancel" id="CRk-tP-eCa"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ME0-7x-q4a">
@@ -325,6 +325,7 @@
                         <outlet property="firstName" destination="ME0-7x-q4a" id="bWN-IZ-Ca2"/>
                         <outlet property="imageUrl" destination="tTO-Vp-Fgf" id="SSY-TQ-Eeo"/>
                         <outlet property="lastName" destination="3CV-Kn-xLr" id="WKL-7z-Z1y"/>
+                        <outlet property="popupFrame" destination="HK0-Ae-0kk" id="qwL-ih-VQY"/>
                         <outlet property="save" destination="4OV-AQ-6Ms" id="VqO-06-qc4"/>
                         <outlet property="userDescription" destination="Xby-JZ-FXY" id="jLa-Cx-fMH"/>
                     </connections>
@@ -884,6 +885,6 @@
         <image name="Scuba Mask-30.png" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="mhn-GV-8Zw"/>
+        <segue reference="zGe-Oc-vjJ"/>
     </inferredMetricsTieBreakers>
 </document>

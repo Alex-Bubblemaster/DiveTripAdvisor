@@ -77,9 +77,8 @@ class ViewController: UIViewController, HttpRequesterDelegate {
             
             let uiAlert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: UIAlertControllerStyle.alert)
            
-            uiAlert.addAction(UIAlertAction(title: "Ok", style: .default))
+            uiAlert.addAction(UIAlertAction(title: "OK", style: .default))
             self.present(uiAlert, animated: true, completion: nil)
-            print(error)
         }
     }
     

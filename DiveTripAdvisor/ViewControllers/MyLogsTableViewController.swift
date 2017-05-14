@@ -70,7 +70,6 @@ class MyLogsTableViewController: UITableViewController {
         cell.sightings?.text = "Sightings: " + (self.userLogs[indexPath.row].sightings?.joined(separator: ", "))!
         cell.sightings?.layer.cornerRadius = 5
 
-
         return cell
     }
 }
