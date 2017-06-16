@@ -2,6 +2,8 @@
 iOS app based on the Angular 2 and node js powered web app
 http://divingguide.azurewebsites.net/home
 
+<img src="https://user-images.githubusercontent.com/10980842/27215356-7454864c-5279-11e7-9a23-65046a74667e.png">
+
 ## Overview
 
 This is an iOS application, where the scuba divers from all around the world can share their experience, photos and the amazing locations they visited. 
